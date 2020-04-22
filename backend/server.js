@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
-// const routes = require("./routes");
+const routes = require("./routes");
 
 // Middleware ----------------------------- //
 
@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
 });
 
 // app.use("/api/v1/users", routes.users);
-// app.use("/api/v1/auth", routes.auth);
+app.use("/api/v1/auth", routes.auth);
 
 // Server --------------------------------- //
 
