@@ -155,6 +155,9 @@ const db = require("../models");
 //   });
 // };
 
+// GET all posts by author e.g. /api/v1/posts?author=6542215664655
+// GET all posts by city e.g. /api/v1/posts?city=san+francisco
+// or all posts e.g. /api/v1/posts
 const get = (req, res) => {
   if (req.query.author) {
     db.Post.find({author: req.query.author}, (err, posts) => {

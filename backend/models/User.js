@@ -13,8 +13,9 @@ const UserSchema = mongoose.Schema({
     unique: true,
   },
   city: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "City",
+    type: String,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "City",
     // required: [true, "City is required"],
   },
   password: {

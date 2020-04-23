@@ -4,35 +4,35 @@ const users = [
   {
     name: "Bob",
     email: "bob@gmail.com",
-    // city: "San Francisco",
+    city: "San Francisco",
     password: "123456789",
     // pic: 'https://images.unsplash.com/photo-1563302628-6d8ad9cdbcf5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=300'
   },
   {
     name: "Daphne",
     email: "daphne@gmail.com",
-    // city: "San Francisco",
+    city: "San Francisco",
     password: "123456789",
     // pic: 'https://images.unsplash.com/photo-1579034628318-b14c8ab399a9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=300'
   },
   {
     name: "Jo",
     email: "jo@gmail.com",
-    // city: "San Francisco",
+    city: "Paris",
     password: "123456789",
     // pic: 'https://images.unsplash.com/photo-1541112324160-e8a425b58dac?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=300'
   },
   {
     name: "Uneeq",
     email: "uneeq@gmail.com",
-    // city: "San Francisco",
+    city: "San Francisco",
     password: "123456789",
     // pic: 'https://images.unsplash.com/photo-1559024922-9ade05850615?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=300'
   },
   {
     name: "Hamza",
     email: "hamza@hotmail.com",
-    // city: "San Francisco",
+    city: "Seattle",
     password: "123456789",
     // pic: 'https://images.unsplash.com/photo-1555620535-58093c34ea13?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=300'
   },
@@ -157,10 +157,10 @@ db.City.deleteMany({}, (err, dCities) => {
       if (err) return console.error(err);
       console.log(`Deleted ${dUsers.deletedCount} users.`);
       db.User.create(users, (err, newUsers) => {
-        for (let i=0; i<users.length; i++) {
-          newUsers[i].city = newCities[i]._id;
-          newUsers[i].save();
-        }
+        // for (let i=0; i<users.length; i++) {
+          // newUsers[i].city = newCities[i]._id;
+          // newUsers[i].save();
+        // }
         db.Post.deleteMany({}, (err, dPosts) => {
           if (err) return console.error(err);
           console.log(`Deleted ${dPosts.deletedCount} posts.`);
