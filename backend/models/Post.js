@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
 
-// City Schema
-const CitySchema = new mongoose.Schema({
-  name: String,
-  country: String,
+const PostSchema = new mongoose.Schema({
+  title: String,
+  body: String,
   image: String,
-  posts: [Post.schema],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  posts: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
-const City = mongoose.model("City", CitySchema);
+// Post Model
+const Post = mongoose.model("Post", PostSchema);
 
-module.exports = City;
+module.exports = Post;
