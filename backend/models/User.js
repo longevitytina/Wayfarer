@@ -14,17 +14,15 @@ const UserSchema = mongoose.Schema({
   },
   city: {
     type: String,
-    required: [true, "City is required"],
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "City",
+    // required: [true, "City is required"],
   },
   password: {
     type: String,
     required: [true, "Password is required"],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+}, {timestamps: true});
 
 // model-ify the schema
 const User = mongoose.model("User", UserSchema);

@@ -5,22 +5,13 @@ const ctrl = require("../controllers");
 
 // CURRENT PATH = 'api/v1/cities'
 
-// GET Cities Index
+// GET all Cities
 router.get("/", ctrl.citiesCtrl.index);
 
-// GET Cities Show
+// POST new city - for dev
+router.post("/", ctrl.citiesCtrl.create);
+
+// GET city by id
 router.get("/:id", ctrl.citiesCtrl.show);
-
-// Post Cities Create
-router.post("/", ctrl.citiesCtrl.createCity);
-
-// Post CitiesPosts Create
-router.post("/:cityId/posts", ctrl.postsCtrl.createPost);
-
-// PUT CitiesPosts Update
-router.put("/:cityId/posts/:postId", ctrl.postsCtrl.updatePost);
-
-// DELETE CitiesPosts Destroy
-router.delete("/:cityId/posts/:postId", ctrl.postsCtrl.deletePost);
 
 module.exports = router;
