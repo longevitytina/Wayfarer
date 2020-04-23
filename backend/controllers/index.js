@@ -1,4 +1,6 @@
 module.exports = {
-  users: require("./users"),
-  auth: require("./auth"),
+  usersCtrl: require("./users"),
+  citiesCtrl: require("./cities"),
+  postsCtrl: require("./posts"),
+  authCtrl: require("./auth"),
 };
