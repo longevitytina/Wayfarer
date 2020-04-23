@@ -5,6 +5,6 @@ const ctrl = require("../controllers");
 // PATH = /api/v1/user
 
 // get the user's profile using their ID
-router.get("/:id", ctrl.users.show);
+router.get("/:id", ctrl.usersCtrl.show);
 
 module.exports = router;
