@@ -24,7 +24,7 @@ const show = (req, res) => {
   });
 };
 
-const createCity = (req, res) => {
+const create = (req, res) => {
   db.City.create(req.body, (err, newCity) => {
     if (err) {
       return res
@@ -39,5 +39,5 @@ const createCity = (req, res) => {
 module.exports = {
   index,
   show,
-  createCity,
+  create
 };
