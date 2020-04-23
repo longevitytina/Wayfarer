@@ -4,17 +4,15 @@ const PostSchema = new mongoose.Schema({
   title: String,
   body: String,
   image: String,
-  user: {
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  posts: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
-});
+  city: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "City",
+  },
+}, {timestamps: true});
 
 // Post Model
 const Post = mongoose.model("Post", PostSchema);
