@@ -54,6 +54,6 @@ app.use("/api/v1/posts", routes.posts);
 
 // Server --------------------------------- //
 
-app.listen(3000, () => {
-  return console.log(`Server connected at http://localhost:3000`);
+app.listen(3001, () => {
+  return console.log(`Server connected at http://localhost:3001`);
 });
