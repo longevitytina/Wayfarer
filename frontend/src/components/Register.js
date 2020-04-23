@@ -6,6 +6,7 @@ class Register extends Component {
     // store the default values for the fields in the register form
     name: '',
     email: '',
+    city: '',
     password: '',
     password2: ''
   }
@@ -29,10 +30,11 @@ class Register extends Component {
         this.setState({
           name: '',
           email: '',
+          city: '',
           password: '',
           password2: ''
         })
-        this.props.history.push('/login')
+        this.props.history.push('/profile')
       })
       .catch(err => console.log(err))
   }
@@ -58,6 +60,10 @@ class Register extends Component {
               <div className="form-group">
                 <label htmlFor="name">Email</label>
                 <input onChange={this.handleChange} className="form-control form-control-lg" type="email" id="email" name="email" value={this.state.email} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">City</label>
+                <input onChange={this.handleChange} className="form-control form-control-lg" type="city" id="city" name="city" value={this.state.city} />
               </div>
               <div className="form-group">
                 <label htmlFor="name">Password</label>
