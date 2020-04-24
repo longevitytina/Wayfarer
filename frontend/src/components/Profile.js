@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import PostContainer from "./PostContainer";
+import Post from "./Post";
 
 class Profile extends Component {
   state = {
@@ -23,9 +23,7 @@ class Profile extends Component {
   }
 
   render() {
-    const allPosts = this.state.posts.map((post) => {
-      <Post {...post} />;
-    });
+    const allPosts = this.state.posts.map((post) => <Post {...post} />);
     return <div className="allPosts">{allPosts}</div>;
   }
 }
