@@ -35,7 +35,7 @@ class Profile extends Component {
           <p>City: {this.state.user.city}</p>
           <p>Member since: {moment(this.state.user.createdAt).format('LL')}</p>
           <Link to={{
-            pathname: '/profile/edit',
+            pathname: '/user/:id/edit',
             state: {...this.state.user}
           }}>Edit profile</Link>      
         </div>

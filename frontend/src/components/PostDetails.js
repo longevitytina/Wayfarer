@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 function Details({ location: { state } }) {
-  const { title, body, city, image, author } = state;
+  const { title, body, city, image } = state;
   return (
     <div>
       <p>{title}</p>

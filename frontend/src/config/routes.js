@@ -5,6 +5,7 @@ import Profile from "../components/Profile";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import PostDetails from "../components/PostDetails";
+import EditProfile from "../components/EditProfile";
 
 export default (props) => (
   <Switch>
@@ -30,6 +31,6 @@ export default (props) => (
     />
     <Route path="/register" component={Register} />
     <Route path="/post/:id" component={PostDetails} />
-    <Route path="/profile/edit" component={EditProfile} />
+    <Route path="/user/:id/edit" component={EditProfile} />
   </Switch>
 );
