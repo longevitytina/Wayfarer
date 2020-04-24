@@ -30,5 +30,6 @@ export default (props) => (
     />
     <Route path="/register" component={Register} />
     <Route path="/post/:id" component={PostDetails} />
+    <Route path="/profile/edit" component={EditProfile} />
   </Switch>
 );
