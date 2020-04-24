@@ -10,9 +10,11 @@ class PostDetails extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:3001/api/v1/post/${this.props.postId}`)
+      .get(`http://localhost:3001/api/v1/posts/${this.props.match.params.id}`)
       .then((res) => {this.setState({data: res.data});
         console.log(res.data);
+
+        
       })
       .catch(error => console.log("Error fetching and parsing data", error));
   }
@@ -22,7 +24,9 @@ class PostDetails extends Component {
      );
   }
 }
- 
+
+
+
 export default PostDetails;
 
 // function Details({ location: { state } }) {
