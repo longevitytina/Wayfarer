@@ -39,7 +39,7 @@ class Profile extends Component {
             state: {...this.state.user}
           }}>Edit profile</Link>      
         </div>
-        <div className="allPosts">{allPosts}</div>;
+        <div className="allPosts">{allPosts}</div>
       </div>
     ) 
   }
