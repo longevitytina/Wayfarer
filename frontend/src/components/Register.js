@@ -34,6 +34,7 @@ class Register extends Component {
           password: '',
           password2: ''
         })
+        // this.props.setCurrentUser(res.data.data)
         this.props.history.push('/profile')
       })
       .catch(err => console.log(err))
