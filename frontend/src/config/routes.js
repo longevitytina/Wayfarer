@@ -11,7 +11,7 @@ export default (props) => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route
-      path="/profile"
+      exact path="/profile"
       render={(routeProps) => {
         return <Profile {...routeProps} currentUser={props.currentUser} />;
       }}
@@ -30,7 +30,7 @@ export default (props) => (
       }}
     />
     <Route path="/register" component={Register} />
-    <Route path="/post/" component={PostDetails} />
+    <Route path="/post/:id" component={PostDetails} />
     <Route
       path="/profile/edit"
       render={(routeProps) => {
