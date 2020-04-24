@@ -13,7 +13,7 @@ const Post = ({ _id, title, body, city, image, author }) => {
             title,
             author,
             city,
-            body,
+            body
           },
         }}
       >

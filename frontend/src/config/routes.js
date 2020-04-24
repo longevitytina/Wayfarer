@@ -30,7 +30,12 @@ export default (props) => (
       }}
     />
     <Route path="/register" component={Register} />
-    <Route path="/post/:id" component={PostDetails} />
-    <Route path="/user/:id/edit" component={EditProfile} />
+    <Route path="/post/" component={PostDetails} />
+    <Route
+      path="/profile/edit"
+      render={(routeProps) => {
+        return <EditProfile {...routeProps} currentUser={props.currentUser} />;
+      }}
+    />
   </Switch>
 );
