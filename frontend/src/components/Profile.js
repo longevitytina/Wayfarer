@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PostContainer from './PostContainer';
 
 class Profile extends Component {
   state = { 
@@ -19,18 +20,10 @@ class Profile extends Component {
   }
 
   render() { 
-    let results;
-    if(this.state.posts){
-      results = this.state.posts.map((post) => {
-        return (
-          <p key={post.id}>{post.title}</p>
-        )
-      })
-    }
     return (
       <> 
         <h1>Profile</h1>
-        {results}
+        <PostContainer posts={this.state.posts} />
       </>
     );
   }
