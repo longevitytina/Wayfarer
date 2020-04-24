@@ -1,4 +1,23 @@
+require("dotenv").config();
 const db = require("./models");
+const bcrypt = require("bcrypt");
+
+// const hash = (passwd) => {
+//   bcrypt.genSalt(10, (err, salt) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     // Hash the user's password using the salt that was generated
+//     bcrypt.hash(passwd, salt, (err, hash) => {
+//       if (err) {
+//         console.log(err);
+//       }
+//       return hash;
+//     });
+//   });
+// }
+
+
 
 const users = [
   {
@@ -148,6 +167,7 @@ const cities = [
   },
 ];
 
+
 db.City.deleteMany({}, (err, dCities) => {
   if (err) return console.error(err);
   console.log(`Deleted ${dCities.deletedCount} cities.`);
@@ -157,14 +177,21 @@ db.City.deleteMany({}, (err, dCities) => {
       if (err) return console.error(err);
       console.log(`Deleted ${dUsers.deletedCount} users.`);
       db.User.create(users, (err, newUsers) => {
-        // for (let i=0; i<users.length; i++) {
-          // newUsers[i].city = newCities[i]._id;
-          // newUsers[i].save();
+        // for (let user of newUsers) {
+        //   console.log(user.password);
+        //   bcrypt.hash(user.password, 10, async (err, hash) => {
+        //     console.log(hash);
+        //     user.password = hash;
+        //     user.save();
+        //   })
+        //   await user.save();
         // }
         db.Post.deleteMany({}, (err, dPosts) => {
+          // console.log(newUsers);
           if (err) return console.error(err);
           console.log(`Deleted ${dPosts.deletedCount} posts.`);
-          db.Post.create(posts, (err, newPosts) => {
+          db.Post.create(posts, async (err, newPosts) => {
+            // console.log(newUsers);
             for (let n=0; n<users.length; n++) {
               newPosts[n*2].city = newCities[n]._id;
               newPosts[n*2].author = newUsers[n]._id;
@@ -172,8 +199,11 @@ db.City.deleteMany({}, (err, dCities) => {
               newPosts[n*2+1].city = newCities[n]._id;
               newPosts[n*2+1].author = newUsers[n]._id;
               newPosts[n*2+1].save();
+              // newUsers[n].save();
             }
             console.log(`Created ${newCities.length} cities, ${newUsers.length} users, ${newPosts.length} posts.`);
+            // console.log(newUsers);
+            
           })
         })
       })
@@ -181,12 +211,29 @@ db.City.deleteMany({}, (err, dCities) => {
   });
 })
 
-// 1. in models/index.js change line 6 temporarily to:
-//   .connect("mongodb://localhost:27017/wayfarer", {
+
+// db.Problem.deleteMany({})
+//   .then((_result) => db.Solution.deleteMany())
+//   .then(() => db.Solution.create(solutions))
+//   .then(() =>
+//     // return a Promise.all
+//     Promise.all(
+//       // takes an array of promises
+//       // callback of map returns a promise
+//       problems.map((problem) =>
+//         db.Solution.find({ name: problem.solutionNames }).then((results) => {
+//           problem.properties.solutions = results
+//           return db.Problem.create(problem.properties)
+//         })
+//       )
+//     )
+//   )
+//   .then((createdProblems) => {
+//     console.log(createdProblems)
+//     process.exit()
+//   })
 
 // 2. run node seed in terminal to clear & seed database
 
 // 3. Ctrl + c in terminal to exit node shell once database is seeded
 
-// 4. change models/index.js line 6 back to:
-//   .connect(dbUrl, {
