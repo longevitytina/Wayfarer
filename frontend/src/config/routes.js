@@ -29,7 +29,7 @@ export default (props) => (
         );
       }}
     />
-    <Route path="/register" component={Register} />
+    <Route path="/register" component={Register} setCurrentUser={props.setCurrentUser}/>
     <Route path="/post/:id" component={PostDetails} />
     <Route
       path="/profile/edit"

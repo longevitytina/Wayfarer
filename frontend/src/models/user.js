@@ -8,8 +8,8 @@ export default class UserModel {
     return request
   }
 
-  static edit(data) {
-    let request = axios.put(`${REACT_APP_API_URL}/users/${this.props.user._id}`, data)
+  static update(data) {
+    let request = axios.put(`${REACT_APP_API_URL}/users/${data.user}`, data)
     return request
   }
   
