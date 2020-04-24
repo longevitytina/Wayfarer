@@ -37,9 +37,10 @@ class Profile extends Component {
           <Link to={{
             pathname: '/profile/edit',
             state: {...this.state.user}
-          }}>Edit profile</Link>      
+          }}><h4>Edit profile</h4></Link>      
         </div>
-        <div className="allPosts">{allPosts}</div>;
+        <h3>My Posts</h3>
+        <div className="allPosts">{allPosts}</div>
       </div>
     ) 
   }
