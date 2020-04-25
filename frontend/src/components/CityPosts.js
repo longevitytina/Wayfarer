@@ -8,6 +8,12 @@ export default function CityPosts(props) {
         <h5 className="mt-0 mb-1">{props.title}</h5>
         {props.body[0]}...
       </div>
+      <button className="edit" onClick="">
+        Edit
+      </button>
+      <button className="remove" onClick="">
+        Remove
+      </button>
     </li>
   );
 }
