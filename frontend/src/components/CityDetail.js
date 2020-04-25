@@ -48,12 +48,14 @@ export default class CityDetail extends Component {
         <p>{this.state.name}</p>
         <p>{this.state.country}</p>
         <img src={this.state.image} alt={""} />
-        {/* <h3>City Posts</h3> */}
+        <h3 className="pt-4">City Posts</h3>
 
         <div className="allPosts">
-          {this.state.posts.map((post) => (
-            <CityPosts {...post} key={post._id} />
-          ))}
+          <ul class="list-unstyled">
+            {this.state.posts.map((post) => (
+              <CityPosts {...post} key={post._id} />
+            ))}
+          </ul>
         </div>
       </div>
     );
