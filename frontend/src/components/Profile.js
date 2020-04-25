@@ -16,23 +16,21 @@ class Profile extends Component {
         console.log(res.data);
       })
       .catch(error => console.log("Error fetching and parsing data", error));
-
-    axios
+      axios
       .get(`http://localhost:3001/api/v1/users/${this.props.currentUser}`)
-      .then((res) => {this.setState({user: res.data.data});
-        console.log(res.data.data);
+      .then((res) => {this.setState({user: res.data});
+        console.log(res.data);
       })
       .catch(error => console.log("Error fetching and parsing data", error));
   }
 
   render() {
-    const allPosts = this.state.posts.map((post) => <Post {...post} key={post._id} />);
     return (
       <div>
         <div>
           <h1>Profile</h1>
-          <p>Name: {this.state.user.name}</p>
-          <p>City: {this.state.user.city}</p>
+          { this.state.user.name && <p>Name: {this.state.user.name}</p>}
+          { this.state.user.city && <p>City: {this.state.user.city.name}</p>}
           <p>Member since: {moment(this.state.user.createdAt).format('LL')}</p>
           <Link to={{
             pathname: '/profile/edit',
@@ -40,7 +38,11 @@ class Profile extends Component {
           }}><h4>Edit profile</h4></Link>      
         </div>
         <h3>My Posts</h3>
-        <div className="allPosts">{allPosts}</div>
+        <div className="allPosts">
+          {this.state.posts.map(post => (
+            <Post {...post} key={post._id} />
+					))}
+        </div>
       </div>
     ) 
   }
