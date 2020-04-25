@@ -5,12 +5,14 @@ import Profile from "../components/Profile";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import PostDetails from "../components/PostDetails";
+import EditProfile from "../components/EditProfile";
+import CityDetail from "../components/CityDetail";
 
 export default (props) => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route
-      path="/profile"
+      exact path="/profile"
       render={(routeProps) => {
         return <Profile {...routeProps} currentUser={props.currentUser} />;
       }}
@@ -18,7 +20,6 @@ export default (props) => (
     <Route
       path="/login"
       render={(routeProps) => {
-        // An example of adding props to a component rendered by react router
         return (
           <Login
             {...routeProps}
@@ -28,8 +29,25 @@ export default (props) => (
         );
       }}
     />
-    <Route path="/register" component={Register} />
+    <Route
+      path="/register"
+      render={(routeProps) => {
+        return (
+          <Register
+            {...routeProps}
+            currentUser={props.currentUser}
+            setCurrentUser={props.setCurrentUser}
+          />
+        );
+      }}
+    />
     <Route path="/post/:id" component={PostDetails} />
-    <Route path="/profile/edit" component={EditProfile} />
+    <Route path="/city/:id" component={CityDetail} />
+    <Route
+      path="/profile/edit"
+      render={(routeProps) => {
+        return <EditProfile {...routeProps} currentUser={props.currentUser} />;
+      }}
+    />
   </Switch>
 );
