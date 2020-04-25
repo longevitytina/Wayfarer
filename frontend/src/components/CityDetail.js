@@ -51,7 +51,7 @@ export default class CityDetail extends Component {
         <h3 className="pt-4">City Posts</h3>
 
         <div className="allPosts">
-          <ul class="list-unstyled">
+          <ul className="list-unstyled">
             {this.state.posts.map((post) => (
               <CityPosts {...post} key={post._id} />
             ))}
