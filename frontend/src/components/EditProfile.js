@@ -55,22 +55,10 @@ class EditProfile extends Component {
                     value={this.state.name}
                 />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="name">Email</label>
-                <input onChange={this.handleChange} className="form-control form-control-lg" type="email" id="email" name="email" value={this.state.email} />
-              </div> */}
               <div className="form-group">
                 <label htmlFor="name">City</label>
                 <input onChange={this.handleChange} className="form-control form-control-lg" type="city" id="city" name="city" value={this.state.city} />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="name">Password</label>
-                <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password" name="password" value={this.state.password} />
-              </div> */}
-              {/* <div className="form-group">
-                <label htmlFor="password2">Confirm Password</label>
-                <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password2" name="password2" value={this.state.password2} />
-              </div> */}
               <button className="btn btn-primary float-right" type="submit">EditProfile</button>
             </form>
           </div>

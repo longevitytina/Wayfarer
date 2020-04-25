@@ -31,8 +31,9 @@ class Profile extends Component {
       <div>
         <div>
           <h1>Profile</h1>
-          <p>Name: {this.state.user.name}</p>
-          <p>City: {this.state.user.city}</p>
+          { this.state.user.name && <p>Name: {this.state.user.name}</p> />}
+          
+          { this.state.user.city && <p>City: {this.state.user.city}</p> />}
           <p>Member since: {moment(this.state.user.createdAt).format('LL')}</p>
           <Link to={{
             pathname: '/profile/edit',

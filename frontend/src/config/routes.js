@@ -19,7 +19,6 @@ export default (props) => (
     <Route
       path="/login"
       render={(routeProps) => {
-        // An example of adding props to a component rendered by react router
         return (
           <Login
             {...routeProps}
@@ -29,7 +28,18 @@ export default (props) => (
         );
       }}
     />
-    <Route path="/register" component={Register} setCurrentUser={props.setCurrentUser}/>
+    <Route
+      path="/register"
+      render={(routeProps) => {
+        return (
+          <Register
+            {...routeProps}
+            currentUser={props.currentUser}
+            setCurrentUser={props.setCurrentUser}
+          />
+        );
+      }}
+    />
     <Route path="/post/:id" component={PostDetails} />
     <Route
       path="/profile/edit"
