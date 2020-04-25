@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CityPosts from "./CityPosts";
+import PostModel from "../models/post";
 
 //link to city that was clicked
 //display image, title, description, and all posts
@@ -40,6 +41,18 @@ export default class CityDetail extends Component {
       .catch((error) => console.log("Error fetching and parsing data", error));
   }
 
+  deletePost = (id) => {
+    console.log(PostModel);
+
+    axios.delete(`http://localhost:3001/api/v1/posts/${id}`).then((res) => {
+      debugger;
+      let posts = this.state.posts.filter(function (post) {
+        return post._id !== id;
+      });
+      this.setState({ posts });
+    });
+  };
+
   render() {
     console.log(this.state.posts[0] ? this.state.posts[0].title : null);
 
@@ -53,7 +66,11 @@ export default class CityDetail extends Component {
         <div className="allPosts">
           <ul className="list-unstyled">
             {this.state.posts.map((post) => (
-              <CityPosts {...post} key={post._id} />
+              <CityPosts
+                {...post}
+                key={post._id}
+                onDeletePost={this.deletePost}
+              />
             ))}
           </ul>
         </div>
