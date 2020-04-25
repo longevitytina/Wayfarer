@@ -9,7 +9,8 @@ class Profile extends Component {
     posts: [],
     user: {},
   };
-  componentDidMount() {
+  
+  componentWillMount() {
     axios
       .get(`http://localhost:3001/api/v1/posts?author=${this.props.currentUser}`)
       .then((res) => {this.setState({posts: res.data});
