@@ -6,6 +6,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import PostDetails from "../components/PostDetails";
 import EditProfile from "../components/EditProfile";
+import CityDetail from "../components/CityDetail";
 
 export default (props) => (
   <Switch>
@@ -41,6 +42,7 @@ export default (props) => (
       }}
     />
     <Route path="/post/:id" component={PostDetails} />
+    <Route path="/city/:id" component={CityDetail} />
     <Route
       path="/profile/edit"
       render={(routeProps) => {
