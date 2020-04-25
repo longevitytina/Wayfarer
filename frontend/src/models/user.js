@@ -7,6 +7,11 @@ export default class UserModel {
     let request = axios.post(`${REACT_APP_API_URL}/auth/register`, data)
     return request
   }
+
+  static update(data) {
+    let request = axios.put(`${REACT_APP_API_URL}/users/${data.user}`, data)
+    return request
+  }
   
   static login(credentials) {
     let request = axios.post(`${REACT_APP_API_URL}/auth/login`, credentials, {
@@ -14,7 +19,7 @@ export default class UserModel {
     })
     return request
   }
-
+  
   static logout() {
     let request = axios.delete(`${REACT_APP_API_URL}/auth/logout`, { withCredentials: true })
     return request
