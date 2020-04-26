@@ -40,6 +40,12 @@ class PostDetails extends Component {
       .catch((err) => console.log(err));
   };
 
+  shouldRenderEditedOn() {
+    const createdAt = moment(this.state.data.createdAt);
+    const updatedAt = moment(this.state.data.updatedAt);
+    return updatedAt.diff(createdAt, "minutes") > 0;
+  }
+
   deleteClickedPost = () => this.props.onDeletePost(this.props._id);
 
   render() {
@@ -55,6 +61,11 @@ class PostDetails extends Component {
         {this.state.body.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+
+        {this.shouldRenderEditedOn()
+          ? `Edited on ${moment(this.state.data.updatedAt).format("LL")}`
+          : ""}
+
         <Button
           variant="outline-dark"
           className="delete"
