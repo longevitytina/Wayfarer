@@ -79,7 +79,7 @@ class EditPost extends Component {
     return (
       <div className="container mt-4">
         <div className="row">
-          <div className="col-md-4 offset-md-4">
+          <div className="col-md-12">
             <h4 className="mb-3">Edit Post</h4>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
