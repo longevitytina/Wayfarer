@@ -40,6 +40,12 @@ class PostDetails extends Component {
       .catch((err) => console.log(err));
   };
 
+  shouldRenderEditedOn() {
+    const createdAt = moment(this.state.data.createdAt);
+    const updatedAt = moment(this.state.data.updatedAt);
+    return updatedAt.diff(createdAt, "minutes") > 0;
+  }
+
   deleteClickedPost = () => this.props.onDeletePost(this.props._id);
 
   render() {
@@ -49,12 +55,18 @@ class PostDetails extends Component {
         <p>{this.state.city.name}</p>
         <img src={this.state.data.image} alt={this.state.data.title} />
         <p>
+          {console.log(this.state)}
           Posted by {this.state.author.name} on{" "}
           {moment(this.state.data.createdAt).format("LL")}
         </p>
         {this.state.body.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+
+        {this.shouldRenderEditedOn()
+          ? `Edited on ${moment(this.state.data.updatedAt).format("LL")}`
+          : ""}
+
         <Button
           variant="outline-dark"
           className="delete"
@@ -63,12 +75,15 @@ class PostDetails extends Component {
           Delete
         </Button>
         <Link
+          className="link"
           to={{
             pathname: `/post/${this.props.match.params.id}/edit`,
             state: { ...this.state.user },
           }}
         >
-          <h4>Update Post</h4>
+          <button type="button" class="btn btn-outline-dark">
+            Update Post
+          </button>
         </Link>
       </div>
     );
