@@ -6,7 +6,7 @@ export default function CityPosts(props) {
     <li className="media position-relative my-4">
       <img className="mr-3 img-thumbnail w-25" src={props.image} alt="" />
       <div className="media-body">
-        <h5 className="mt-0">{props.title}</h5>
+        <h5 className="mt-0">{props.title} </h5>
         <p>{props.body[0]}</p>
         <Link
           to={{

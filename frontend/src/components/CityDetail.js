@@ -47,9 +47,7 @@ export default class CityDetail extends Component {
     return (
       <div>
         <img src={this.state.image} alt={""} />
-        <h3 className="pt-4">
-          {this.state.name}, {this.state.country}
-        </h3>
+        <h3 className="pt-4">{this.state.name} Posts</h3>
 
         <div className="allPosts">
           <ul className="list-unstyled">
