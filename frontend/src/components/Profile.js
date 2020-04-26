@@ -4,27 +4,30 @@ import Post from "./Post";
 import moment from 'moment';
 import { Link } from "react-router-dom";
 
+import UserModel from '../models/user';
+import PostModel from '../models/post';
+import ProfileEdit from './ProfileEdit';
+
 class Profile extends Component {
   state = {
     posts: [],
-    user: {},
+    user: {}
   };
-  
-  componentWillMount() {
-    axios
-      .get(`http://localhost:3001/api/v1/posts?author=${this.props.currentUser}`)
-      .then((res) => {this.setState({posts: res.data});
-        console.log(res.data);
-      })
-      .catch(error => console.log("Error fetching and parsing data", error));
-      axios
-      .get(`http://localhost:3001/api/v1/users/${this.props.currentUser}`)
-      .then((res) => {this.setState({user: res.data});
-        console.log(res.data);
-      })
-      .catch(error => console.log("Error fetching and parsing data", error));
-  }
 
+  componentDidMount() {
+    axios.all([
+      UserModel.show(this.props.currentUser), 
+      PostModel.getByAuthor(this.props.currentUser)
+    ]).then(axios.spread((resUser, resPosts) => {
+      console.log(resUser.data);
+      console.log(resPosts.data);
+      this.setState({
+        posts: resPosts.data,
+        user: resUser.data
+      });
+    })).catch(err => console.log(err))
+  }
+  
   render() {
     return (
       <div>
@@ -37,6 +40,7 @@ class Profile extends Component {
             pathname: '/profile/edit',
             state: {...this.state.user}
           }}><h4>Edit profile</h4></Link>      
+          {/* <ProfileEdit {...this.state.user} /> */}
         </div>
         <h3>My Posts</h3>
         <div className="allPosts">

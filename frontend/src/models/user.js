@@ -12,6 +12,11 @@ export default class UserModel {
     let request = axios.put(`${REACT_APP_API_URL}/users/${data.user}`, data)
     return request
   }
+
+  static show(id) {
+    let request = axios.get(`${REACT_APP_API_URL}/users/${id}`)
+    return request
+  }
   
   static login(credentials) {
     let request = axios.post(`${REACT_APP_API_URL}/auth/login`, credentials, {
