@@ -9,7 +9,7 @@ class Profile extends Component {
     posts: [],
     user: {},
   };
-  
+
   componentWillMount() {
     axios
       .get(
@@ -52,7 +52,6 @@ class Profile extends Component {
             <Post {...post} key={post._id} />
           ))}
         </div>
-        <button className="addPost">Add Post</button>
       </div>
     );
   }

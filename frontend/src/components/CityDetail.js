@@ -46,10 +46,10 @@ export default class CityDetail extends Component {
 
     return (
       <div>
-        <p>{this.state.name}</p>
-        <p>{this.state.country}</p>
         <img src={this.state.image} alt={""} />
-        <h3 className="pt-4">City Posts</h3>
+        <h3 className="pt-4">
+          {this.state.name}, {this.state.country}
+        </h3>
 
         <div className="allPosts">
           <ul className="list-unstyled">
