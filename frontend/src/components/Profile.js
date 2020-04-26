@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Post from "./Post";
-import moment from 'moment';
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 import UserModel from '../models/user';
@@ -44,12 +44,12 @@ class Profile extends Component {
         </div>
         <h3>My Posts</h3>
         <div className="allPosts">
-          {this.state.posts.map(post => (
+          {this.state.posts.map((post) => (
             <Post {...post} key={post._id} />
-					))}
+          ))}
         </div>
       </div>
-    ) 
+    );
   }
 }
 

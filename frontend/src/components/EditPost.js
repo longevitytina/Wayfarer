@@ -1,22 +1,40 @@
 import React, { Component } from "react";
-import UserModel from "../models/user";
+import PostModel from "../models/post";
+import moment from "moment";
 import axios from "axios";
 
-class EditProfile extends Component {
+class EditPost extends Component {
   state = {
-    name: "",
+    data: [],
+    body: [],
+    title: "",
     city: "",
-    user: "",
     cities: [],
+    author: {},
   };
 
   componentDidMount() {
     axios
+      .get(`http://localhost:3001/api/v1/posts/${this.props.match.params.id}`)
+      .then((res) => {
+        this.setState({
+          data: res.data,
+          body: res.data.body,
+          title: res.data.title,
+          city: res.data.city,
+
+          // cities: res.data,
+          author: res.data.author,
+        });
+        console.log(res.data);
+        console.log(this.state);
+      })
+      .catch((error) => console.log("Error fetching and parsing data", error));
+
+    axios
       .get("http://localhost:3001/api/v1/cities")
       .then((res) => {
         this.setState({
-          name: this.props.location.state.name,
-          user: this.props.currentUser,
           cities: res.data,
         });
         console.log(res.data);
@@ -35,7 +53,7 @@ class EditProfile extends Component {
       const found = this.state.cities.find(
         (city) => city.name === event.target.value
       );
-      // console.log(event.target.value);
+
       // console.log(found._id);
       this.setState({ city: found._id });
     } else {
@@ -45,15 +63,15 @@ class EditProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    UserModel.update(this.state)
+    PostModel.update(this.state)
       .then((res) => {
-        this.setState({
-          name: "",
-          // city: '',
-          user: "",
-        });
+        // this.setState({
+        //   //title: "",
+        //   // city: '',
+        //   user: "",
+        // });
         console.log(res);
-        this.props.history.push("/profile");
+        this.props.history.goBack();
       })
       .catch((err) => console.log(err));
   };
@@ -63,17 +81,17 @@ class EditProfile extends Component {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-4 offset-md-4">
-            <h4 className="mb-3">EditProfile</h4>
+            <h4 className="mb-3">Edit Post</h4>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="title">Title</label>
                 <input
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
                   type="text"
                   id="name"
-                  name="name"
-                  value={this.state.name}
+                  name="title"
+                  value={this.state.title}
                 />
               </div>
 
@@ -91,8 +109,25 @@ class EditProfile extends Component {
                 </select>
               </div>
 
+              {/* <div className="form-group">
+                <label htmlFor="body">Body</label>
+                <input
+                  onChange={this.handleChange}
+                  className="form-control form-control-lg"
+                  type="text"
+                  id="name"
+                  name="body"
+                  value={this.state.body[0]}
+                /> */}
+              {/* </> */}
+              {/* </div> */}
+              <p>
+                Updated by {this.state.author.name} on{" "}
+                {moment(this.state.data.createdAt).format("LL")}
+              </p>
+
               <button className="btn btn-primary float-right" type="submit">
-                EditProfile
+                Edit Post
               </button>
             </form>
           </div>
@@ -102,4 +137,4 @@ class EditProfile extends Component {
   }
 }
 
-export default EditProfile;
+export default EditPost;

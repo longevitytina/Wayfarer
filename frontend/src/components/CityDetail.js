@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CityPosts from "./CityPosts";
+import PostModel from "../models/post";
 
 //link to city that was clicked
 //display image, title, description, and all posts
@@ -45,15 +46,17 @@ export default class CityDetail extends Component {
 
     return (
       <div>
-        <p>{this.state.name}</p>
-        <p>{this.state.country}</p>
         <img src={this.state.image} alt={""} />
-        <h3 className="pt-4">City Posts</h3>
+        <h3 className="pt-4">{this.state.name} Posts</h3>
 
         <div className="allPosts">
           <ul className="list-unstyled">
             {this.state.posts.map((post) => (
-              <CityPosts {...post} key={post._id} />
+              <CityPosts
+                {...post}
+                key={post._id}
+                onDeletePost={this.deletePost}
+              />
             ))}
           </ul>
         </div>

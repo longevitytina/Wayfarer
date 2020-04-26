@@ -7,12 +7,14 @@ import Register from "../components/Register";
 import PostDetails from "../components/PostDetails";
 import EditProfile from "../components/EditProfile";
 import CityDetail from "../components/CityDetail";
+import EditPost from "../components/EditPost";
 
 export default (props) => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route
-      exact path="/profile"
+      exact
+      path="/profile"
       render={(routeProps) => {
         return <Profile {...routeProps} currentUser={props.currentUser} />;
       }}
@@ -39,6 +41,14 @@ export default (props) => (
             setCurrentUser={props.setCurrentUser}
           />
         );
+      }}
+    />
+    <Route
+      exact
+      path="/post/:id/edit"
+      component={EditPost}
+      render={(routeProps) => {
+        return <EditPost {...routeProps} currentUser={props.currentUser} />;
       }}
     />
     <Route path="/post/:id" component={PostDetails} />
