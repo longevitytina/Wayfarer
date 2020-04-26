@@ -5,6 +5,7 @@ const Post = ({ _id, title, body, city, image, author }) => {
   return (
     <div key={_id}>
       <Link
+        className="link"
         to={{
           pathname: `/post/${_id}`,
           state: {
@@ -12,7 +13,7 @@ const Post = ({ _id, title, body, city, image, author }) => {
             title,
             author,
             city,
-            body
+            body,
           },
         }}
       >

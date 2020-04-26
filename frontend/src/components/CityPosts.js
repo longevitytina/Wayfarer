@@ -9,6 +9,7 @@ export default function CityPosts(props) {
         <h5 className="mt-0">{props.title} </h5>
         <p>{props.body[0]}</p>
         <Link
+          className="link"
           to={{
             pathname: `/post/${props._id}`,
           }}

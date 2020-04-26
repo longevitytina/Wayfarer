@@ -121,7 +121,7 @@ class EditPost extends Component {
                 {moment(this.state.data.updatedAt).format("LL")}
               </p>
 
-              <button className="btn btn-primary float-right" type="submit">
+              <button className="btn btn-outline-dark" type="submit">
                 Edit Post
               </button>
             </form>

@@ -55,6 +55,7 @@ class PostDetails extends Component {
         <p>{this.state.city.name}</p>
         <img src={this.state.data.image} alt={this.state.data.title} />
         <p>
+          {console.log(this.state)}
           Posted by {this.state.author.name} on{" "}
           {moment(this.state.data.createdAt).format("LL")}
         </p>
@@ -74,12 +75,15 @@ class PostDetails extends Component {
           Delete
         </Button>
         <Link
+          className="link"
           to={{
             pathname: `/post/${this.props.match.params.id}/edit`,
             state: { ...this.state.user },
           }}
         >
-          <h4>Update Post</h4>
+          <button type="button" class="btn btn-outline-dark">
+            Update Post
+          </button>
         </Link>
       </div>
     );

@@ -91,7 +91,7 @@ class EditProfile extends Component {
                 </select>
               </div>
 
-              <button className="btn btn-primary float-right" type="submit">
+              <button type="submit" className="btn btn-outline-dark">
                 EditProfile
               </button>
             </form>
