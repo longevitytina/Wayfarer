@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import CityPosts from "./CityPosts";
 import PostModel from "../models/post";
+import CreatePostModal from "./CreatePostModal";
 
 //link to city that was clicked
 //display image, title, description, and all posts
@@ -41,28 +42,14 @@ export default class CityDetail extends Component {
       .catch((error) => console.log("Error fetching and parsing data", error));
   }
 
-  deletePost = (id) => {
-    console.log(PostModel);
-
-    axios.delete(`http://localhost:3001/api/v1/posts/${id}`).then((res) => {
-      debugger;
-      let posts = this.state.posts.filter(function (post) {
-        return post._id !== id;
-      });
-      this.setState({ posts });
-    });
-  };
-
   render() {
     console.log(this.state.posts[0] ? this.state.posts[0].title : null);
 
     return (
       <div>
-        <p>{this.state.name}</p>
-        <p>{this.state.country}</p>
         <img src={this.state.image} alt={""} />
-        <h3 className="pt-4">City Posts</h3>
-
+        <h3 className="pt-4">{this.state.name} Posts</h3>
+        <CreatePostModal city={this.props.match.params.id} author={this.props.currentUser} />
         <div className="allPosts">
           <ul className="list-unstyled">
             {this.state.posts.map((post) => (
