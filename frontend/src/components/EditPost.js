@@ -65,11 +65,6 @@ class EditPost extends Component {
     event.preventDefault();
     PostModel.update(this.state)
       .then((res) => {
-        // this.setState({
-        //   //title: "",
-        //   // city: '',
-        //   user: "",
-        // });
         console.log(res);
         this.props.history.goBack();
       })
@@ -123,7 +118,7 @@ class EditPost extends Component {
               {/* </div> */}
               <p>
                 Updated by {this.state.author.name} on{" "}
-                {moment(this.state.data.createdAt).format("LL")}
+                {moment(this.state.data.updatedAt).format("LL")}
               </p>
 
               <button className="btn btn-primary float-right" type="submit">
