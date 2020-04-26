@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import PostModel from "../models/post";
+import { Link } from "react-router-dom";
 
 class PostDetails extends Component {
   state = {
@@ -12,7 +13,7 @@ class PostDetails extends Component {
     author: {},
   };
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get(`http://localhost:3001/api/v1/posts/${this.props.match.params.id}`)
       .then((res) => {
@@ -39,17 +40,6 @@ class PostDetails extends Component {
       .catch((err) => console.log(err));
   };
 
-  // deletePost = (id) => {
-  //   axios;
-  //   Postmodel.delete(`http://localhost:3001/api/v1/posts/${id}`).then((res) => {
-  //     debugger;
-  //     let posts = this.state.posts.filter(function (post) {
-  //       return post._id !== id;
-  //     });
-  //     this.setState({ posts });
-  //   });
-  // };
-
   deleteClickedPost = () => this.props.onDeletePost(this.props._id);
 
   render() {
@@ -72,6 +62,14 @@ class PostDetails extends Component {
         >
           Delete
         </Button>
+        <Link
+          to={{
+            pathname: `/post/${this.props.match.params.id}/edit`,
+            state: { ...this.state.user },
+          }}
+        >
+          <h4>Update Post</h4>
+        </Link>
       </div>
     );
   }
