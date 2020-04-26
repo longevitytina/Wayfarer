@@ -52,7 +52,12 @@ export default (props) => (
       }}
     />
     <Route path="/post/:id" component={PostDetails} />
-    <Route path="/city/:id" component={CityDetail} />
+    <Route 
+      path="/city/:id" 
+      render={(routeProps) => {
+        return <CityDetail {...routeProps} currentUser={props.currentUser}/>;
+      }}
+    />
     <Route
       path="/profile/edit"
       render={(routeProps) => {
