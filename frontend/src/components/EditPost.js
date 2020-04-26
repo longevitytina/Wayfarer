@@ -43,9 +43,11 @@ class EditPost extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    let stateValue = event.target.value;
+    if (event.target.name === "body") {
+      stateValue = event.target.value.split("\n");
+    }
+    this.setState({ [event.target.name]: stateValue });
   };
 
   handleSelect = (event) => {
@@ -72,6 +74,8 @@ class EditPost extends Component {
   };
 
   render() {
+    const body = this.state.body.join("\n");
+
     return (
       <div className="container mt-4">
         <div className="row">
@@ -104,18 +108,18 @@ class EditPost extends Component {
                 </select>
               </div>
 
-              {/* <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="body">Body</label>
-                <input
+                <textarea
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
-                  type="text"
+                  type="paragraph_text"
                   id="name"
                   name="body"
-                  value={this.state.body[0]}
-                /> */}
-              {/* </> */}
-              {/* </div> */}
+                  rows="20"
+                  value={body}
+                ></textarea>
+              </div>
               <p>
                 Updated by {this.state.author.name} on{" "}
                 {moment(this.state.data.updatedAt).format("LL")}
