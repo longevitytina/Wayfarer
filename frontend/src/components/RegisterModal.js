@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import CreatePostForm from './CreatePostForm';
+import Register from './Register';
 
-function CreatePostModal(props) {
+function RegisterModal(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
+		
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add post
-      </Button>
+      <li className="nav-item">
+				<button type="button" className="btn nav-link" onClick={handleShow}>Register</button>
+			</li>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add new post</Modal.Title>
+          <Modal.Title>Register</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="p-5">
 
-					<CreatePostForm {...props} handleClose={handleClose} />
+					<Register {...props} handleClose={handleClose} />
 
 				</Modal.Body>
         {/* <Modal.Footer>
@@ -34,6 +35,6 @@ function CreatePostModal(props) {
   );
 }
 
-// render(<CreatePostModal />);
+// render(<RegisterModal />);
 
-export default CreatePostModal;
+export default RegisterModal;

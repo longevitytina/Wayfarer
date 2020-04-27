@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
+import RegisterModal from './RegisterModal';
+import Login from './modals/Login';
 
 const Navbar = (props) => {
     return (
@@ -24,12 +26,14 @@ const Navbar = (props) => {
                 </>
               :
                 <>
+                  <RegisterModal {...props} />
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/register">Register</NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/login">Login</NavLink>
                   </li>
+                  <Login />
                 </>
               }
             </ul>

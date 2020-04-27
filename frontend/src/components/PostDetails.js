@@ -4,7 +4,7 @@ import moment from "moment";
 import Button from "react-bootstrap/Button";
 import PostModel from "../models/post";
 import { Link } from "react-router-dom";
-import DeleteModal from './DeleteModal';
+import ConfirmDelete from './modals/ConfirmDelete';
 
 class PostDetails extends Component {
   state = {
@@ -68,7 +68,7 @@ class PostDetails extends Component {
           ? `Edited on ${moment(this.state.data.updatedAt).format("LL")}`
           : ""}
 
-        <DeleteModal post={this.state.data.title} delete={this.handleDelete} />
+        <ConfirmDelete post={this.state.data.title} delete={this.handleDelete} />
         <Link
           className="link"
           to={{

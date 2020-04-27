@@ -1,55 +1,51 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import Routes from "./config/routes";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import UserModel from "./models/user";
-import "./index.css";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import PostDetails from "./components/PostDetails";
+import EditProfile from "./components/EditProfile";
+import CityDetail from "./components/CityDetail";
+import EditPost from "./components/EditPost";
+import NotFound from "./components/NotFound";
 
-class App extends Component {
-  state = {
-    currentUser: localStorage.getItem("uid"),
-  };
+import withContext from './Context';
+import PrivateRoute from './PrivateRoute';
 
-  setCurrentUser = (userId) => {
-    this.setState({ currentUser: userId });
-    localStorage.setItem("uid", userId);
-  };
+const NavbarWithContext = withContext(Navbar);
+const SidebarWithContext = withContext(Sidebar);
+const ProfileWithContext = withContext(Profile);
+const LoginWithContext = withContext(Login);
+const RegisterWithContext = withContext(Register);
+const PostDetailsWithContext = withContext(PostDetails);
+const EditProfileWithContext = withContext(EditProfile);
+const CityDetailWithContext = withContext(CityDetail);
+const EditPostWithContext = withContext(EditPost);
 
-  logout = (event) => {
-    event.preventDefault();
-
-    localStorage.removeItem("uid");
-    UserModel.logout()
-      .then((res) => {
-        console.log(res);
-        this.setState({ currentUser: null });
-        this.props.history.push("/login");
-      })
-      .catch((err) => console.log(err));
-  };
-
-
-  render() {
-    return (
-      <>
-        <Navbar currentUser={this.state.currentUser} logout={this.logout} />
-        <div className="container-fluid ">
-          <div className="row">
-            {this.props.location.pathname !== "/" && <Sidebar />}
-            <main role="main" className="col-md-9 ml-sm-auto p-5 ">
-              <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-                <Routes
-                  currentUser={this.state.currentUser}
-                  setCurrentUser={this.setCurrentUser}
-                />
-              </div>
-            </main>
-          </div>
-        </div>
-      </>
-    );
-  }
-}
-
-export default withRouter(App);
+export default () => (
+  <Router>
+    <div>
+      <NavbarWithContext />
+      <SidebarWithContext />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={LoginWithContext} />
+        <Route path="/signup" component={RegisterWithContext} />
+        <PrivateRoute exact path="/profile" component={ProfileWithContext} />
+        <PrivateRoute path="/profile/edit" component={EditProfileWithContext} />
+        <Route exact path="/post/:id" component={PostDetailsWithContext} />
+        <Route path="/post/:id/edit" component={EditPostWithContext} />
+        <Route path="/city/:id" component={CityDetailWithContext} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
+  </Router>
+)
