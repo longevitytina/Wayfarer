@@ -6,31 +6,29 @@ import { Form, Button } from "react-bootstrap";
 
 class EditPost extends Component {
   state = {
-    stuffForTheDb: {
-      data: [],
-      body: [],
-      title: "",
-      city: "",
-      cities: [],
-      author: {},
-    },
+    data: [],
+    body: [],
+    title: "",
+    city: "",
+    cities: [],
+    author: {},
   };
+
   componentDidMount() {
     axios
       .get(`http://localhost:3001/api/v1/posts/${this.props.match.params.id}`)
       .then((res) => {
         this.setState({
-          stuffForTheDb: {
-            ...this.state.stuffForTheDb,
-            data: res.data,
-            body: res.data.body,
-            title: res.data.title,
-            city: res.data.city,
-            author: res.data.author,
-          },
+          data: res.data,
+          body: res.data.body,
+          title: res.data.title,
+          city: res.data.city,
+
+          // cities: res.data,
+          author: res.data.author,
         });
         console.log(res.data);
-        console.log(this.state.stuffForTheDb);
+        console.log(this.state);
       })
       .catch((error) => console.log("Error fetching and parsing data", error));
 
@@ -38,12 +36,7 @@ class EditPost extends Component {
       .get("http://localhost:3001/api/v1/cities")
       .then((res) => {
         this.setState({
-          stuffForTheDb: {
-            // not a top lvl property, so need to assign previous state, so it will not be
-            // overwritten with setState(). Adds property cities to state.
-            ...this.state.stuffForTheDb,
-            cities: res.data,
-          },
+          cities: res.data,
         });
         console.log(res.data);
       })
@@ -55,28 +48,19 @@ class EditPost extends Component {
     if (event.target.name === "body") {
       stateValue = event.target.value.split("\n");
     }
-    this.setState({
-      stuffForTheDb: {
-        ...this.state.stuffForTheDb,
-        [event.target.name]: stateValue,
-      },
-    });
+    this.setState({ [event.target.name]: stateValue });
   };
 
   handleSelect = (event) => {
     if (event.target.value) {
-      const found = this.state.stuffForTheDb.cities.find(
+      const found = this.state.cities.find(
         (city) => city.name === event.target.value
       );
 
       // console.log(found._id);
-      this.setState({
-        stuffForTheDb: { ...this.state.stuffForTheDb, city: found._id },
-      });
+      this.setState({ city: found._id });
     } else {
-      this.setState({
-        stuffForTheDb: { ...this.state.stuffForTheDb, city: "" },
-      });
+      this.setState({ city: "" });
     }
   };
 
@@ -84,7 +68,7 @@ class EditPost extends Component {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity() === true) {
-      PostModel.update(this.state.stuffForTheDb)
+      PostModel.update(this.state)
         .then((res) => {
           console.log(res);
           this.props.history.goBack();
@@ -94,8 +78,7 @@ class EditPost extends Component {
   };
 
   render() {
-    console.log(this.state);
-    const body = this.state.stuffForTheDb.body.join("\n");
+    const body = this.state.body.join("\n");
     return (
       <div className="container mt-4">
         <div className="row">
@@ -111,7 +94,7 @@ class EditPost extends Component {
                   type="text"
                   id="name"
                   name="title"
-                  value={this.state.stuffForTheDb.title}
+                  value={this.state.title}
                 />
               </Form.Group>
               <Form.Group controlId="exampleFormControlSelect1">
@@ -123,10 +106,9 @@ class EditPost extends Component {
                   id="exampleFormControlSelect1"
                   as="select"
                 >
-                  {console.log("message", this.state.stuffForTheDb) ||
-                    this.state.stuffForTheDb.cities.map((city) => (
-                      <option key={city._id}>{city.name}</option>
-                    ))}
+                  {this.state.cities.map((city) => (
+                    <option key={city._id}>{city.name}</option>
+                  ))}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="body">
@@ -142,10 +124,7 @@ class EditPost extends Component {
                   as="textarea"
                 />
               </Form.Group>
-              <p>
-                Edited on{" "}
-                {moment(this.state.stuffForTheDb.data.updatedAt).format("LL")}
-              </p>
+              <p>Edited on {moment(this.state.data.updatedAt).format("LL")}</p>
 
               <button className="btn btn-outline-dark" type="submit">
                 Save
