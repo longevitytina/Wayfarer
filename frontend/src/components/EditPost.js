@@ -88,9 +88,12 @@ class EditPost extends Component {
                   className="form-control form-control-lg"
                   type="text"
                   name="title"
-                  maxlength="10"
+                  maxlength="5"
                   value={this.state.title}
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please write something, max 200 characters
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group controlId="exampleFormControlSelect1">
                 <Form.Label>City</Form.Label>
@@ -116,6 +119,9 @@ class EditPost extends Component {
                   value={body}
                   as="textarea"
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please write something!
+                </Form.Control.Feedback>
               </Form.Group>
               <p>Edited on {moment(this.state.data.updatedAt).format("LL")}</p>
 
