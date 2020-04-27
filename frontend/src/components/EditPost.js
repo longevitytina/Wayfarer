@@ -27,18 +27,13 @@ class EditPost extends Component {
           // cities: res.data,
           author: res.data.author,
         });
-        console.log(res.data);
-        console.log(this.state);
       })
       .catch((error) => console.log("Error fetching and parsing data", error));
 
     axios
       .get("http://localhost:3001/api/v1/cities")
       .then((res) => {
-        this.setState({
-          cities: res.data,
-        });
-        console.log(res.data);
+        this.setState({ cities: res.data });
       })
       .catch((error) => console.log("Error fetching and parsing data", error));
   }
@@ -92,7 +87,6 @@ class EditPost extends Component {
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
                   type="text"
-                  id="name"
                   name="title"
                   value={this.state.title}
                 />
@@ -103,7 +97,6 @@ class EditPost extends Component {
                   required
                   onChange={this.handleSelect}
                   className="form-control"
-                  id="exampleFormControlSelect1"
                   as="select"
                 >
                   {this.state.cities.map((city) => (
@@ -117,7 +110,6 @@ class EditPost extends Component {
                   required
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
-                  id="name"
                   name="body"
                   rows="20"
                   value={body}

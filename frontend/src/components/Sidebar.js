@@ -10,10 +10,7 @@ class Sidebar extends Component {
     axios
       .get("http://localhost:3001/api/v1/cities")
       .then((res) => {
-        this.setState({
-          cities: res.data,
-        });
-        console.log(this.state);
+        this.setState({ cities: res.data });
       })
       .catch((error) => console.log("Error fetching and parsing data", error));
   }
