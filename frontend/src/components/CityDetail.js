@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import CityPosts from "./CityPosts";
 import CreatePost from "./modals/CreatePost";
+import CityModel from "../models/city";
+import PostModel from "../models/post";
 
 //link to city that was clicked
 //display image, title, description, and all posts
@@ -14,35 +16,58 @@ export default class CityDetail extends Component {
     posts: [],
   };
 
-  componentWillMount() {
-    axios
-      .get(`http://localhost:3001/api/v1/cities/${this.props.match.params.id}`)
-      .then((res) => {
-        this.setState({
-          data: res.data,
-          name: res.data.name,
-          country: res.data.country,
-          image: res.data.image,
-        });
+  componentDidUpdate(prevProps, prevState) {
+    // if (prevState.name !== this.state.name) {
+    //   this.reRender();
+    // }
+    // if (this.props.location.pathname !== prevProps.location.pathname)
+    console.log(prevProps.location.pathname);
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.reRender();
+    }
+  }
 
-        console.log(this.state.name);
-        console.log(this.state.country);
-      })
-      .catch((error) => console.log("Error fetching and parsing data", error));
+  // componentDidMount() {
+  //   console.log('componentDidMount');
+  // }
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate');
+  // }
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount');
+  // }
+  // render() {
+  //   console.log('render');
+  // }
+ 
+  componentDidMount() {
+    this.reRender();
+  }
+
+  reRender(){
     axios
-      .get(
-        `http://localhost:3001/api/v1/posts?city=${this.props.match.params.id}`
+      .all([
+        CityModel.getOne(this.props.match.params.id),
+        PostModel.getByCity(this.props.match.params.id),
+      ])
+      .then(
+        axios.spread((resCity, resPosts) => {
+          // console.log(resCity.data);
+          // console.log(resPosts.data);
+          this.setState({
+            posts: resPosts.data,
+            name: resCity.data.name,
+            country: resCity.data.country,
+            image: resCity.data.image,
+          });
+          console.log(this.state);
+        })
       )
-      .then((res) => {
-        this.setState({ posts: res.data });
-        console.log(res.data);
-        console.log(typeof res.data);
-      })
-      .catch((error) => console.log("Error fetching and parsing data", error));
+      .catch((err) => console.log(err));
   }
 
   render() {
-    console.log(this.state.posts[0] ? this.state.posts[0].title : null);
+    // console.log(this.state.posts[0] ? this.state.posts[0].title : null);
 
     return (
       <div>

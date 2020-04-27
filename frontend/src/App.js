@@ -45,18 +45,14 @@ export default () => (
           <Switch>
             <Route exact path="/" component={Home} />
             <PrivateRoute exact path="/profile" component={ProfileWithContext} />
-            <PrivateRoute path="/profile/edit" component={EditProfileWithContext} />
+            <PrivateRoute exact path="/profile/edit" component={EditProfileWithContext} />
             <Route exact path="/post/:id" component={PostDetailsWithContext} />
-            <Route path="/post/:id/edit" component={EditPostWithContext} />
-            <Route path="/city/:id" component={CityDetailWithContext} />
+            <Route exact path="/post/:id/edit" component={EditPostWithContext} />
+            <Route exact path="/city/:id" component={CityDetailWithContext} />
             <Route component={NotFound} />
           </Switch>
         </Col>
       </Row>
     </Container>
-    <div>
-      
-      
-    </div>
   </Router>
 )

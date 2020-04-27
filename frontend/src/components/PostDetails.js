@@ -33,7 +33,7 @@ class PostDetails extends Component {
   }
   handleDelete = (event) => {
     event.preventDefault();
-    PostModel.remove(this.props.match.params.id)
+    PostModel.delete(this.props.match.params.id)
       .then((res) => {
         console.log(res);
         this.props.history.goBack();
