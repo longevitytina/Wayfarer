@@ -42,15 +42,19 @@ export default class CityDetail extends Component {
   }
 
   render() {
-    console.log(this.state.posts[0] ? this.state.posts[0].title : null);
-
+    const { context } = this.props;
     return (
       <div>
         <img src={this.state.image} alt={""} />
-        
+
         <div className="d-flex justify-content-between">
           <h3 className="pt-4">{this.state.name} Posts</h3>
-          <CreatePost city={this.props.match.params.id} author={this.props.currentUser} />
+          {context.currentUser ? (
+            <CreatePost
+              city={this.props.match.params.id}
+              author={this.props.currentUser}
+            />
+          ) : null}
         </div>
         <div className="allPosts">
           <ul className="list-unstyled">
