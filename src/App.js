@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
-import {Container, Row, Col} from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 import NavTop from "./components/NavTop";
 import Sidebar from "./components/Sidebar";
@@ -18,8 +14,8 @@ import CityDetail from "./components/CityDetail";
 import EditPost from "./components/EditPost";
 import NotFound from "./components/NotFound";
 
-import withContext from './Context';
-import PrivateRoute from './PrivateRoute';
+import withContext from "./Context";
+import PrivateRoute from "./PrivateRoute";
 
 const NavTopWithContext = withContext(NavTop);
 const SidebarWithContext = withContext(Sidebar);
@@ -44,19 +40,27 @@ export default () => (
         <Col>
           <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute exact path="/profile" component={ProfileWithContext} />
-            <PrivateRoute path="/profile/edit" component={EditProfileWithContext} />
+            <PrivateRoute
+              exact
+              path="/profile"
+              component={ProfileWithContext}
+            />
+            <PrivateRoute
+              path="/profile/edit"
+              component={EditProfileWithContext}
+            />
             <Route exact path="/post/:id" component={PostDetailsWithContext} />
-            <Route path="/post/:id/edit" component={EditPostWithContext} />
-            <Route path="/city/:id" component={CityDetailWithContext} />
+            <Route
+              exact
+              path="/post/:id/edit"
+              component={EditPostWithContext}
+            />
+            <Route exact path="/city/:id" component={CityDetailWithContext} />
             <Route component={NotFound} />
           </Switch>
         </Col>
       </Row>
     </Container>
-    <div>
-      
-      
-    </div>
+    <div></div>
   </Router>
-)
+);
