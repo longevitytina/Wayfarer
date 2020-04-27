@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PostModel from "../models/post";
 import moment from "moment";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 class EditPost extends Component {
   state = {
@@ -63,7 +63,7 @@ class EditPost extends Component {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity() === true) {
-      PostModel.update(this.state)
+      PostModel.put(this.state)
         .then((res) => {
           console.log(res);
           this.props.history.goBack();
