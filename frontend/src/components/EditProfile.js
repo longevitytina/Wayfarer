@@ -1,42 +1,45 @@
 import React, { Component } from "react";
 import UserModel from "../models/user";
 import axios from "axios";
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 class EditProfile extends Component {
   state = {
     name: "",
     city: "",
     user: "",
-    cities: [],
+    email: ""
   };
 
   componentDidMount() {
-    axios
-      .get("http://localhost:3001/api/v1/cities")
+    const { context } = this.props;
+    UserModel.getOne(context.currentUser)
       .then((res) => {
-        this.setState({
-          name: this.props.location.state.name,
-          user: this.props.currentUser,
-          cities: res.data,
-        });
         console.log(res.data);
+        this.setState({
+          name: res.data.name,
+          user: res.data._id,
+          email: res.data.email
+        })
+        console.log(context.cities);
       })
-      .catch((error) => console.log("Error fetching and parsing data", error));
+        .catch((error) => console.log("Error fetching and parsing data", error));
   }
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.id]: event.target.value,
     });
   };
 
   handleSelect = (event) => {
+    const { context } = this.props;
     if (event.target.value) {
-      const found = this.state.cities.find(
+      const found = context.cities.find(
         (city) => city.name === event.target.value
       );
-      // console.log(event.target.value);
-      // console.log(found._id);
+      console.log(event.target.value);
+      console.log(found._id);
       this.setState({ city: found._id });
     } else {
       this.setState({ city: "" });
@@ -45,13 +48,13 @@ class EditProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    UserModel.update(this.state)
+    UserModel.put(this.state)
       .then((res) => {
-        this.setState({
-          name: "",
-          // city: '',
-          user: "",
-        });
+        // this.setState({
+        //   name: "",
+        //   // city: '',
+        //   user: "",
+        // });
         console.log(res);
         this.props.history.push("/profile");
       })
@@ -59,45 +62,43 @@ class EditProfile extends Component {
   };
 
   render() {
+    const { context } = this.props;
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-md-4 offset-md-4">
-            <h4 className="mb-3">EditProfile</h4>
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  onChange={this.handleChange}
-                  className="form-control form-control-lg"
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={this.state.name}
-                />
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="exampleFormControlSelect1">City</label>
-                <select
-                  onChange={this.handleSelect}
-                  className="form-control"
-                  id="exampleFormControlSelect1"
-                >
-                  <option key="null"></option>
-                  {this.state.cities.map((city) => (
-                    <option key={city._id}>{city.name}</option>
-                  ))}
-                </select>
-              </div>
+      <Form>
+        <Form.Group as={Row} controlId="email" onSubmit={this.handleSubmit}>
+          <Form.Label column sm="4">
+            Email
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control plaintext readOnly defaultValue={this.state.email} />
+          </Col>
+        </Form.Group>
 
-              <button type="submit" className="btn btn-outline-dark">
-                EditProfile
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+        <Form.Group controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" placeholder={this.state.name} onChange={this.handleChange} />
+        </Form.Group>
+
+        <Form.Group controlId="city">
+          <Form.Label>City</Form.Label>
+          <Form.Control as="select" onChange={this.handleSelect}>
+            <option></option>
+            {context.cities.map((city) => (
+              <option key={city._id}>{city.name}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Button
+            variant="outline-secondary"
+            onClick={this.props.history.goBack}
+          >
+            Back
+          </Button>
+          <Button variant="outline-dark" onClick={this.handleSubmit}>
+            Submit
+          </Button>
+      </Form>
     );
   }
 }

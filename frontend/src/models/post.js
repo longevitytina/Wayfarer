@@ -18,12 +18,12 @@ export default class PostModel {
     return request;
   }
 
-  static create(data) {
+  static post(data) {
     let request = axios.post(`${REACT_APP_API_URL}/posts`, data);
     return request;
   }
 
-  static update(data) {
+  static put(data) {
     let request = axios.put(
       `${REACT_APP_API_URL}/posts/${data.data._id}`,
       data
@@ -31,12 +31,12 @@ export default class PostModel {
     return request;
   }
 
-  static show(id) {
+  static getOne(id) {
     let request = axios.get(`${REACT_APP_API_URL}/posts/${id}`);
     return request;
   }
 
-  static remove(id) {
+  static delete(id) {
     let request = axios.delete(`${REACT_APP_API_URL}/posts/${id}`);
     return request;
   }
