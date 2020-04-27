@@ -88,6 +88,7 @@ class EditPost extends Component {
                   className="form-control form-control-lg"
                   type="text"
                   name="title"
+                  maxlength="10"
                   value={this.state.title}
                 />
               </Form.Group>
