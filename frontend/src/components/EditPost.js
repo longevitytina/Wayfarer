@@ -14,7 +14,6 @@ class EditPost extends Component {
       cities: [],
       author: {},
     },
-    validated: false,
   };
   componentDidMount() {
     axios
@@ -83,35 +82,26 @@ class EditPost extends Component {
 
   handleSubmit = (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    this.setState({ validated: true });
     event.preventDefault();
-    PostModel.update(this.state.stuffForTheDb)
-      .then((res) => {
-        console.log(res);
-        this.props.history.goBack();
-      })
-      .catch((err) => console.log(err));
+    if (form.checkValidity() === true) {
+      PostModel.update(this.state.stuffForTheDb)
+        .then((res) => {
+          console.log(res);
+          this.props.history.goBack();
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   render() {
     console.log(this.state);
     const body = this.state.stuffForTheDb.body.join("\n");
-
     return (
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-12">
             <h4 className="mb-3">Edit Post</h4>
-            <Form
-              noValidate
-              validated={this.state.validated}
-              onSubmit={this.handleSubmit}
-              className="was-validated"
-            >
+            <Form noValidate validated onSubmit={this.handleSubmit}>
               <Form.Group controlId="title">
                 <Form.Label>Post title:</Form.Label>
                 <Form.Control
