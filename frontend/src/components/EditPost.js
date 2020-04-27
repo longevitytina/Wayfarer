@@ -14,10 +14,7 @@ class EditPost extends Component {
       cities: [],
       author: {},
     },
-    stuffForBootstrap: {
-      validated: false,
-      setValidated: false,
-    },
+    validated: false,
   };
   componentDidMount() {
     axios
@@ -85,13 +82,12 @@ class EditPost extends Component {
   };
 
   handleSubmit = (event) => {
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-
-    // setValidated(true);
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.setState({ validated: true });
     event.preventDefault();
     PostModel.update(this.state.stuffForTheDb)
       .then((res) => {
@@ -110,10 +106,16 @@ class EditPost extends Component {
         <div className="row">
           <div className="col-md-12">
             <h4 className="mb-3">Edit Post</h4>
-            <Form onSubmit={this.handleSubmit}>
+            <Form
+              noValidate
+              validated={this.state.validated}
+              onSubmit={this.handleSubmit}
+              className="was-validated"
+            >
               <Form.Group controlId="title">
                 <Form.Label>Post title:</Form.Label>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
                   type="text"
@@ -125,6 +127,7 @@ class EditPost extends Component {
               <Form.Group controlId="exampleFormControlSelect1">
                 <Form.Label>City</Form.Label>
                 <Form.Control
+                  required
                   onChange={this.handleSelect}
                   className="form-control"
                   id="exampleFormControlSelect1"
@@ -139,6 +142,7 @@ class EditPost extends Component {
               <Form.Group controlId="body">
                 <Form.Label>Body</Form.Label>
                 <Form.Control
+                  required
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
                   id="name"
