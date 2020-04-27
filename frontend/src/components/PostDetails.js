@@ -4,7 +4,7 @@ import moment from "moment";
 import Button from "react-bootstrap/Button";
 import PostModel from "../models/post";
 import { Link } from "react-router-dom";
-import ConfirmDelete from './modals/ConfirmDelete';
+import ConfirmDelete from "./modals/ConfirmDelete";
 
 class PostDetails extends Component {
   state = {
@@ -50,6 +50,9 @@ class PostDetails extends Component {
   deleteClickedPost = () => this.props.onDeletePost(this.props._id);
 
   render() {
+    const { context } = this.props;
+    console.log(context.currentUser);
+    console.log(this.state.author._id);
     return (
       <div>
         <p>{this.state.data.title}</p>
@@ -67,19 +70,25 @@ class PostDetails extends Component {
         {this.shouldRenderEditedOn()
           ? `Edited on ${moment(this.state.data.updatedAt).format("LL")}`
           : ""}
-
-        <ConfirmDelete post={this.state.data.title} delete={this.handleDelete} />
-        <Link
-          className="link"
-          to={{
-            pathname: `/post/${this.props.match.params.id}/edit`,
-            state: { ...this.state.user },
-          }}
-        >
-          <button type="button" class="btn btn-outline-dark">
-            Update Post
-          </button>
-        </Link>
+        {context.currentUser == this.state.author._id ? (
+          <>
+            <ConfirmDelete
+              post={this.state.data.title}
+              delete={this.handleDelete}
+            />
+            <Link
+              className="link"
+              to={{
+                pathname: `/post/${this.props.match.params.id}/edit`,
+                state: { ...this.state.user },
+              }}
+            >
+              <button type="button" class="btn btn-outline-dark">
+                Update Post
+              </button>
+            </Link>
+          </>
+        ) : null}
       </div>
     );
   }
