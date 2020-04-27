@@ -1,17 +1,44 @@
 import React, { Component } from 'react';
 import UserModel from "./models/user";
+import CityModel from "./models/city";
 
 const Context = React.createContext(); 
 
 export class Provider extends Component {
 
 	state = {
-    currentUser: localStorage.getItem("uid"),
+		currentUser: localStorage.getItem("uid"),
+		cities: [],
+    currentCity: "",
+    showLoginModal: false,
+    showSignupModal: false,
   };
+
+	componentDidMount() {
+		CityModel.getAll()
+      .then((res) => {
+        this.setState({
+					cities: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
 
   setCurrentUser = (userId) => {
     this.setState({ currentUser: userId });
     localStorage.setItem("uid", userId);
+	};
+	
+	setCurrentCity = (cityId) => {
+    this.setState({ currentCity: cityId });
+  };
+
+  toggleLoginModal = () => {
+    this.setState({ showLoginModal: !this.state.showLoginModal });
+  };
+
+  toggleSignupModal = () => {
+    this.setState({ showSignupModal: !this.state.showSignupModal });
   };
 
   logout = (event) => {
@@ -28,12 +55,19 @@ export class Provider extends Component {
 
 
   render() {
-    const { currentUser } = this.state;
+    const { currentUser, currentCity, cities, showLoginModal, showSignupModal } = this.state;
     const value = {
-      currentUser,
+			currentUser,
+			currentCity,
+      cities,
+      showLoginModal,
+      showSignupModal,
       actions: {
-        setCurrentUser: this.setCurrentUser,
-        logout: this.logout
+				setCurrentUser: this.setCurrentUser,
+				setCurrentCity: this.setCurrentCity,
+        logout: this.logout,
+        toggleLoginModal: this.toggleLoginModal,
+        toggleSignupModal: this.toggleSignupModal,
       },
     };
     return (

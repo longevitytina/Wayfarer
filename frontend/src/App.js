@@ -9,7 +9,8 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import Login from "./components/Login";
+import Login from "./components/modals/Login";
+import Signup from "./components/modals/Signup";
 import Register from "./components/Register";
 import PostDetails from "./components/PostDetails";
 import EditProfile from "./components/EditProfile";
@@ -24,6 +25,7 @@ const NavbarWithContext = withContext(Navbar);
 const SidebarWithContext = withContext(Sidebar);
 const ProfileWithContext = withContext(Profile);
 const LoginWithContext = withContext(Login);
+const SignupWithContext = withContext(Signup);
 const RegisterWithContext = withContext(Register);
 const PostDetailsWithContext = withContext(PostDetails);
 const EditProfileWithContext = withContext(EditProfile);
@@ -35,6 +37,8 @@ export default () => (
     <div>
       <NavbarWithContext />
       <SidebarWithContext />
+      <LoginWithContext />
+      <SignupWithContext />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={LoginWithContext} />
