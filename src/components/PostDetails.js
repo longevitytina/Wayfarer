@@ -52,7 +52,7 @@ class PostDetails extends Component {
   render() {
     const { context } = this.props;
     console.log(context.currentUser);
-    console.log(this.state.author._id);
+    //console.log(this.state.author._id);
     return (
       <div>
         <p>{this.state.data.title}</p>
