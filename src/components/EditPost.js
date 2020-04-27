@@ -88,7 +88,7 @@ class EditPost extends Component {
                   className="form-control form-control-lg"
                   type="text"
                   name="title"
-                  maxlength="5"
+                  maxlength="200"
                   value={this.state.title}
                 />
                 <Form.Control.Feedback type="invalid">
