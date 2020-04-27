@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PostModel from "../models/post";
 import moment from "moment";
 import axios from "axios";
+import { Form, Button } from "react-bootstrap";
 
 class EditPost extends Component {
   state = {
@@ -81,10 +82,10 @@ class EditPost extends Component {
         <div className="row">
           <div className="col-md-12">
             <h4 className="mb-3">Edit Post</h4>
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="title">Title</label>
-                <input
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="title">
+                <Form.Label>Post title:</Form.Label>
+                <Form.Control
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
                   type="text"
@@ -92,43 +93,38 @@ class EditPost extends Component {
                   name="title"
                   value={this.state.title}
                 />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="exampleFormControlSelect1">City</label>
-                <select
+              </Form.Group>
+              <Form.Group controlId="exampleFormControlSelect1">
+                <Form.Label>City</Form.Label>
+                <Form.Control
                   onChange={this.handleSelect}
                   className="form-control"
                   id="exampleFormControlSelect1"
+                  as="select"
                 >
-                  <option key="null"></option>
                   {this.state.cities.map((city) => (
                     <option key={city._id}>{city.name}</option>
                   ))}
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="body">Body</label>
-                <textarea
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="body">
+                <Form.Label>Body</Form.Label>
+                <Form.Control
                   onChange={this.handleChange}
                   className="form-control form-control-lg"
-                  type="paragraph_text"
                   id="name"
                   name="body"
                   rows="20"
                   value={body}
-                ></textarea>
-              </div>
-              <p>
-                Updated by {this.state.author.name} on{" "}
-                {moment(this.state.data.updatedAt).format("LL")}
-              </p>
+                  as="textarea"
+                />
+              </Form.Group>
+              <p>Edited on {moment(this.state.data.updatedAt).format("LL")}</p>
 
               <button className="btn btn-outline-dark" type="submit">
-                Edit Post
+                Save
               </button>
-            </form>
+            </Form>
           </div>
         </div>
       </div>
