@@ -3,17 +3,17 @@ import axios from 'axios'
 const REACT_APP_API_URL = "http://localhost:3001/api/v1"
 
 export default class UserModel {
-  static create(data) {
+  static post(data) {
     let request = axios.post(`${REACT_APP_API_URL}/auth/register`, data)
     return request
   }
 
-  static update(data) {
+  static put(data) {
     let request = axios.put(`${REACT_APP_API_URL}/users/${data.user}`, data)
     return request
   }
 
-  static show(id) {
+  static getOne(id) {
     let request = axios.get(`${REACT_APP_API_URL}/users/${id}`)
     return request
   }
