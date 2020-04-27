@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 import UserModel from "../models/user";
 import PostModel from "../models/post";
-import ProfileEdit from "./ProfileEdit";
 
 class Profile extends Component {
   state = {
@@ -15,10 +14,11 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+    const { context } = this.props;
     axios
       .all([
-        UserModel.show(this.props.currentUser),
-        PostModel.getByAuthor(this.props.currentUser),
+        UserModel.getOne(context.currentUser),
+        PostModel.getByAuthor(context.currentUser),
       ])
       .then(
         axios.spread((resUser, resPosts) => {

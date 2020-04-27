@@ -25,8 +25,11 @@ export class Provider extends Component {
   }
 
   setCurrentUser = (userId) => {
-    this.setState({ currentUser: userId });
+    // console.log(userId);
     localStorage.setItem("uid", userId);
+    // console.log(localStorage.getItem("uid"));
+    this.setState({ currentUser: userId, showLoginModal: false, showSignupModal: false});
+    // console.log(this.state.currentUser);
 	};
 	
 	setCurrentCity = (cityId) => {
@@ -43,12 +46,11 @@ export class Provider extends Component {
 
   logout = (event) => {
     event.preventDefault();
-    localStorage.removeItem("uid");
     UserModel.logout()
       .then((res) => {
         console.log(res);
+        localStorage.removeItem("uid");
         this.setState({ currentUser: null });
-        this.props.history.push("/login");
       })
       .catch((err) => console.log(err));
   };

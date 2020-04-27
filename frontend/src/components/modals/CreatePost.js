@@ -10,6 +10,7 @@ class CreatePostModal extends Component {
     author: "",
     city: "",
     show: false,
+    error: "",
   }
   componentDidMount = () => {
     this.setState({
@@ -37,12 +38,17 @@ class CreatePostModal extends Component {
   handleSubmit = (event) => {
 		event.preventDefault();
 		// console.log(this.state);
-    PostModel.create(this.state)
+    PostModel.post(this.state)
       .then((res) => {
 				// console.log(res);
 				window.location.reload(false);
       })
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.log(err.response.data);
+				this.setState({
+					error: err.response.data.message,
+				});
+      });
   };
   render() { 
     return ( 
@@ -51,16 +57,19 @@ class CreatePostModal extends Component {
           Add post
         </Button>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.state.show} size="lg" centered onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Add new post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
 
-          <Form controlId="createPost" onSubmit={this.handleSubmit}>
+          <Form noValidate controlId="createPost" onSubmit={this.handleSubmit}>
             <Form.Group controlId="title">
               <Form.Label>Post title:</Form.Label>
-              <Form.Control type="text" onChange={this.handleChange} />
+              <Form.Control type="text" onChange={this.handleChange} isInvalid={!!this.state.error} />
+              <Form.Control.Feedback type="invalid">
+                {this.state.error}
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="image">
               <Form.Label>Image link:</Form.Label>
@@ -68,7 +77,10 @@ class CreatePostModal extends Component {
             </Form.Group>
             <Form.Group controlId="body">
               <Form.Label>Post body:</Form.Label>
-              <Form.Control as="textarea" rows="10" onChange={this.handleChange} />
+              <Form.Control as="textarea" rows="10" onChange={this.handleChange} isInvalid={!!this.state.error} />
+              <Form.Control.Feedback type="invalid">
+                {this.state.error}
+              </Form.Control.Feedback>
             </Form.Group>
           </Form>
 
