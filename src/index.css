@@ -6,12 +6,12 @@
   background-image: url("/images/moving.gif")
 } */
 
-.image-blurred-edge {
+/* .image-blurred-edge {
   background-image: url('/images/moving.gif');
   width: 500px;
   height: 300px;
   box-shadow: 0 0 8px 8px white inset;
-}
+} */
 
 .link {
   color: rgb(92, 89, 89);
