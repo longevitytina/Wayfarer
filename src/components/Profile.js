@@ -35,29 +35,39 @@ class Profile extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <h1>Profile</h1>
-          {this.state.user.name && <p>Name: {this.state.user.name}</p>}
-          {this.state.user.city && <p>City: {this.state.user.city.name}</p>}
-          <p>Member since: {moment(this.state.user.createdAt).format("LL")}</p>
-          <Link
-            className="link"
-            to={{
-              pathname: "/profile/edit",
-              state: { ...this.state.user },
-            }}
-          >
-            <button type="button" class="btn btn-outline-dark">
-              Edit profile
-            </button>
-          </Link>
-        </div>
-        <h3>My Posts</h3>
-        <div className="allPosts">
-          {this.state.posts.map((post) => (
-            <Post {...post} key={post._id} />
-          ))}
+      <div className="container px-5">
+        <div className="row">
+          <div className="col-sm p-3">
+            <h2>Profile</h2>
+            {this.state.user.name && <p>Name: {this.state.user.name}</p>}
+            {this.state.user.city && <p>City: {this.state.user.city.name}</p>}
+            <p>
+              Member since: {moment(this.state.user.createdAt).format("LL")}
+            </p>
+            <Link
+              className="link"
+              to={{
+                pathname: "/profile/edit",
+                state: { ...this.state.user },
+              }}
+            >
+              <button type="button" class="btn btn-outline-dark">
+                Edit profile
+              </button>
+            </Link>
+          </div>
+
+          <div className="col-sm p-3">
+            {" "}
+            <h2>My Posts</h2>
+            <div className="allPosts">
+              <ul className="list-unstyled">
+                {this.state.posts.map((post) => (
+                  <Post {...post} key={post._id} />
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     );
