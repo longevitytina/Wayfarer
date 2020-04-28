@@ -31,6 +31,7 @@ class Profile extends Component {
         })
       )
       .catch((err) => console.log(err));
+      console.log(context);
   }
 
   render() {

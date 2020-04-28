@@ -15,10 +15,10 @@ class CreatePostModal extends Component {
   componentDidMount = () => {
     const { context } = this.props;
     this.setState({
-      author: context.currentUser,
+      // author: context.currentUser,
       city: this.props.city,
     });
-    console.log(this.state);
+    console.log(context);
   };
   handleClose = () => {
     this.setState({ show: false });

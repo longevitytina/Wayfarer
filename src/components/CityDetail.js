@@ -4,6 +4,7 @@ import CityPosts from "./CityPosts";
 import CreatePost from "./modals/CreatePost";
 import CityModel from "../models/city";
 import PostModel from "../models/post";
+
 //link to city that was clicked
 //display image, title, description, and all posts
 
@@ -15,18 +16,18 @@ export default class CityDetail extends Component {
     posts: [],
   };
 
-  // forceUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   if (
-  //     this.props.history.location.pathname !==
-  //     prevProps.history.location.pathname
-  //   ) {
-  //     console.log("ch-ch-ch-changesss");
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps.location.pathname);
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.reRender();
+    }
+  }
 
   componentDidMount() {
-    const { context } = this.props;
+    this.reRender();
+  }
+
+  reRender(){
     axios
       .all([
         CityModel.getOne(this.props.match.params.id),
