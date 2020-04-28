@@ -52,7 +52,7 @@ export default class CityDetail extends Component {
   render() {
     const { context } = this.props;
     return (
-      <div>
+      <div className="mt-5">
         <img src={this.state.image} alt={""} />
 
         <div className="d-flex justify-content-between">
@@ -60,7 +60,7 @@ export default class CityDetail extends Component {
           {context.currentUser ? (
             <CreatePost
               city={this.props.match.params.id}
-              author={this.props.currentUser}
+              author={context.currentUser}
             />
           ) : null}
         </div>

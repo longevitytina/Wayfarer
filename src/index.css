@@ -1,12 +1,39 @@
 .selectedLink {
   background-color: bisque;
 }
+
+/* body {
+  background-image: url("/images/moving.gif")
+} */
+
+.image-blurred-edge {
+  background-image: url('/images/moving.gif');
+  width: 500px;
+  height: 300px;
+  box-shadow: 0 0 8px 8px white inset;
+}
+
 .link {
   color: rgb(92, 89, 89);
 }
+
 .link:hover {
   color: rgb(8, 8, 8);
 }
+
+* {
+  font-family: 'Gruppo',
+    cursive;
+}
+
+.brand {
+  font-family: 'Bellota',
+    cursive;
+}
+
+/* .d-block {
+  clip-path: circle(60px at center);
+} */
 
 .nav-link {
   color: rgb(92, 89, 89);
@@ -15,9 +42,11 @@
 .nav-link:hover {
   color: rgb(8, 8, 8);
 }
+
 .allPosts {
   max-width: 600px;
 }
+
 /*
  * Sidebar
  */

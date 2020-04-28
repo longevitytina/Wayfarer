@@ -12,19 +12,22 @@ class CreatePostModal extends Component {
     show: false,
     error: "",
   };
-  componentDidMount = () => {
-    const { context } = this.props;
-    this.setState({
-      // author: context.currentUser,
-      city: this.props.city,
-    });
-    console.log(context);
-  };
+  // componentDidMount = () => {
+  // };
   handleClose = () => {
-    this.setState({ show: false });
+    this.setState({ 
+      author: "",
+      city: "",
+      show: false });
   };
   handleShow = () => {
-    this.setState({ show: true });
+    const { context } = this.props;
+    this.setState({
+      author: context.currentUser,
+      city: this.props.city,
+      show: true 
+    });
+    console.log(this.state);;
   };
   handleChange = (event) => {
     if (event.target.id === "body") {

@@ -9,8 +9,8 @@ function DeleteModal(props) {
 
   return (
     <>
-      <Button variant="danger" onClick={handleShow}>
-        Delete post
+      <Button variant="outline-danger" onClick={handleShow}>
+        Delete
       </Button>
 
       <Modal show={show} onHide={handleClose}>
