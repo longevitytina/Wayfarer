@@ -47,10 +47,20 @@ class PostDetails extends Component {
             alt={this.state.data.title}
           />
           <h2>{this.state.data.title}</h2>
-          <h5>{this.state.data.city.name}</h5>
+          <h5>{this.state.city.name}, {this.state.city.country}</h5>
           <div className="my-3">
             <sub>
-              Posted by {this.state.data.author.name} on{" "}
+              Posted by <Link
+                className="link"
+                to={{
+                  pathname: `/profile/${this.state.author._id}`,
+                }}
+              >
+              {this.state.author.name ?
+                this.state.author.name
+                : "anon"
+              }
+              </Link> on &nbsp;
               <Moment local format="LL">
                 {this.state.data.createdAt}
               </Moment>

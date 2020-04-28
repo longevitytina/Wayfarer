@@ -15,10 +15,11 @@ class Profile extends Component {
 
   componentDidMount() {
     const { context } = this.props;
+    let userId = this.props.match.params.id ? this.props.match.params.id : context.currentUser;
     axios
       .all([
-        UserModel.getOne(context.currentUser),
-        PostModel.getByAuthor(context.currentUser),
+        UserModel.getOne(userId),
+        PostModel.getByAuthor(userId),
       ])
       .then(
         axios.spread((resUser, resPosts) => {
@@ -43,12 +44,12 @@ class Profile extends Component {
             <div className="col-sm p-3">
               <h2>Profile</h2>
               {this.state.user.name && <p>Name: {this.state.user.name}</p>}
-              {this.state.user.city && <p>City: {this.state.user.city.name}</p>}
+              {this.state.user.city && <p>City: {this.state.user.city.name}, {this.state.user.city.country}</p>}
               <p>
                 Member since: {moment(this.state.user.createdAt).format("LL")}
               </p>
 
-              {context.currentUser == this.state.user._id ? (
+              {context.currentUser === this.state.user._id ? (
                 <Link
                   className="link"
                   to={{

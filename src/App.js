@@ -41,6 +41,7 @@ export default () => (
           <Switch>
             <Route exact path="/" component={Home} />
             <PrivateRoute exact path="/profile" component={ProfileWithContext} />
+            <PrivateRoute exact path="/profile/:id" component={ProfileWithContext} />
             <PrivateRoute exact path="/profile/edit" component={EditProfileWithContext} />
             <Route exact path="/post/:id" component={PostDetailsWithContext} />
             <Route exact path="/post/:id/edit" component={EditPostWithContext} />
