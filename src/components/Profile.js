@@ -3,6 +3,7 @@ import axios from "axios";
 import Post from "./Post";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import DivStyle from '../DivStyle';
 
 import UserModel from "../models/user";
 import PostModel from "../models/post";
@@ -39,7 +40,7 @@ class Profile extends Component {
     const { context } = this.props;
     if (this.state.posts && this.state.user) {
       return (
-        <div className="container px-5">
+        <div style={DivStyle} >
           <div className="row">
             <div className="col-sm p-3">
               <h2>Profile</h2>
@@ -63,10 +64,9 @@ class Profile extends Component {
                 </Link>
               ) : null}
             </div>
-  
+            <hr />
             <div className="col-sm p-3">
-              {" "}
-              <h2>Posts</h2>
+              <h2 className="p-3">Posts</h2>
               <div className="allPosts">
                 <ul className="list-unstyled">
                   {this.state.posts.map((post) => (

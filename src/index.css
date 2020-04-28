@@ -1,5 +1,5 @@
 .selectedLink {
-  background-color: bisque;
+  background-color: gainsboro;
 }
 
 
@@ -48,11 +48,24 @@
  */
 
 .sidebar {
-  position: fixed;
-  top: 56px;
-  bottom: 0;
+  position: absolute;
+  /* top: 56px; */
+  /* bottom: 0; */
   left: 0;
-  /* z-index: 100; */
+  /* z-index: -100; */
   padding: 0;
+  height: 100%;
+  width: 300px;
   /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1); */
+  /* background-color: cadetblue !important; */
+}
+
+.content{
+  margin-left: 300px;
+  /* width: 100%; */
+}
+
+.wrapper{
+  position: relative;
+  height: 100%;
 }
