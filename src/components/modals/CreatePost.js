@@ -2,44 +2,52 @@ import React, { Component } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import PostModel from "../../models/post";
 
-class CreatePostModal extends Component {
+class CreatePost extends Component {
   state = {
-    title: "",
-    body: [],
-    image: "",
-    author: "",
-    city: "",
+    title: null,
+    body: null,
+    image: null,
+    author: this.props.author,
+    city: this.props.city,
     show: false,
-    error: "",
+    error: null,
+    errT: null,
+    errB: null,
   };
+
   // componentDidMount = () => {
   // };
+
   handleClose = () => {
     this.setState({ 
-      author: "",
-      city: "",
-      show: false });
+      title: null,
+      body: null,
+      image: null,
+      author: null,
+      city: null,
+      show: false,
+      error: null,
+      errT: null,
+      errB: null,
+    });
   };
+
   handleShow = () => {
-    const { context } = this.props;
     this.setState({
-      author: context.currentUser,
-      city: this.props.city,
       show: true 
     });
     console.log(this.state);;
   };
+
   handleChange = (event) => {
-    if (event.target.id === "body") {
-      this.setState({
-        [event.target.id]: event.target.value.split("\n"),
-      });
-    } else {
-      this.setState({
-        [event.target.id]: event.target.value,
-      });
-    }
+    let value = (event.target.id === "body") ?
+      event.target.value.split("\n") :
+      event.target.value;
+    this.setState({
+      [event.target.id]: value,
+    });     
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
     // console.log(this.state);
@@ -49,16 +57,21 @@ class CreatePostModal extends Component {
         window.location.reload(false);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.errors.title);
         this.setState({
-          error: err.response.data.message,
+          error: err.response.data,
+          errB: (err.response.data.errors.body ? err.response.data.errors.body : null),
+          errT: (err.response.data.errors.title ? err.response.data.errors.title : null),
         });
+        console.log(this.state.error, this.state.errB, this.state.errT);
       });
   };
+
   render() {
+
     return (
       <>
-        <Button variant="outline-dark" onClick={this.handleShow}>
+        <Button  className="h25" variant="outline-dark" onClick={this.handleShow}>
           Add post
         </Button>
 
@@ -82,10 +95,10 @@ class CreatePostModal extends Component {
                 <Form.Control
                   type="text"
                   onChange={this.handleChange}
-                  isInvalid={!!this.state.error}
+                  isInvalid={this.state.errT ? true : false}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {this.state.error}
+                  {this.state.errT ? this.state.errT.message : null}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group controlId="image">
@@ -98,10 +111,10 @@ class CreatePostModal extends Component {
                   as="textarea"
                   rows="10"
                   onChange={this.handleChange}
-                  isInvalid={!!this.state.error}
+                  isInvalid={this.state.errB ? true : false}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {this.state.error}
+                  {this.state.errB ? this.state.errB.message : null}
                 </Form.Control.Feedback>
               </Form.Group>
             </Form>
@@ -124,4 +137,4 @@ class CreatePostModal extends Component {
   }
 }
 
-export default CreatePostModal;
+export default CreatePost;
