@@ -1,32 +1,42 @@
-import axios from 'axios'
-
-const REACT_APP_API_URL = "http://localhost:3001/api/v1"
+import axios from "axios";
 
 export default class UserModel {
   static post(data) {
-    let request = axios.post(`${REACT_APP_API_URL}/auth/register`, data)
-    return request
+    let request = axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/register`,
+      data
+    );
+    return request;
   }
 
   static put(data) {
-    let request = axios.put(`${REACT_APP_API_URL}/users/${data.user}`, data)
-    return request
+    let request = axios.put(
+      `${process.env.REACT_APP_API_URL}/users/${data.user}`,
+      data
+    );
+    return request;
   }
 
   static getOne(id) {
-    let request = axios.get(`${REACT_APP_API_URL}/users/${id}`)
-    return request
+    let request = axios.get(`${process.env.REACT_APP_API_URL}/users/${id}`);
+    return request;
   }
-  
+
   static login(credentials) {
-    let request = axios.post(`${REACT_APP_API_URL}/auth/login`, credentials, {
-      withCredentials: true,
-    })
-    return request
+    let request = axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/login`,
+      credentials,
+      {
+        withCredentials: true,
+      }
+    );
+    return request;
   }
-  
+
   static logout() {
-    let request = axios.delete(`${REACT_APP_API_URL}/auth/logout`, { withCredentials: true })
-    return request
+    let request = axios.delete(`${process.env.REACT_APP_API_URL}/auth/logout`, {
+      withCredentials: true,
+    });
+    return request;
   }
 }
