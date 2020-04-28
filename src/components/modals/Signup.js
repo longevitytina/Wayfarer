@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import UserModel from '../../models/user';
+import { withRouter } from "react-router-dom";
 
 class Signup extends Component {
   state = {
@@ -24,6 +25,8 @@ class Signup extends Component {
       .then((res) => {
         // console.log(res.data.data);
         context.actions.setCurrentUser(res.data);
+				this.props.history.push("/profile");
+
       })
       .catch((err) => {
 				console.log(err);
@@ -106,4 +109,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
