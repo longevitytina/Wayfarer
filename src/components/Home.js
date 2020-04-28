@@ -4,13 +4,13 @@ import Image from "react-bootstrap/Image";
 const Home = () => {
   return (
     <div>
-      <Image
-        src="../images/moving.gif"
-        className="d-block w-100 p-5"
-        alt="sunglasses gif"
-        fluid
-      />
-
+      <div className="image-blurred-edge m-5">
+        {/* <Image
+          src="../images/moving.gif"
+          className="d-block w-100 p-5"
+          alt="sunglasses gif"
+        /> */}
+      </div>
       <h2 className="text-center">Wayfarer is...</h2>
       <div className="container px-5">
         <div className="row">
