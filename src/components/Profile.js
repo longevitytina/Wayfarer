@@ -9,8 +9,8 @@ import PostModel from "../models/post";
 
 class Profile extends Component {
   state = {
-    posts: [],
-    user: {},
+    posts: null,
+    user: null,
   };
 
   componentDidMount() {
@@ -31,37 +31,41 @@ class Profile extends Component {
         })
       )
       .catch((err) => console.log(err));
-      console.log(context);
+      // console.log(context);
   }
 
   render() {
-    return (
-      <div>
+    if (this.state.posts && this.state.user) {
+      return (
         <div>
-          <h1>Profile</h1>
-          {this.state.user.name && <p>Name: {this.state.user.name}</p>}
-          {this.state.user.city && <p>City: {this.state.user.city.name}</p>}
-          <p>Member since: {moment(this.state.user.createdAt).format("LL")}</p>
-          <Link
-            className="link"
-            to={{
-              pathname: "/profile/edit",
-              state: { ...this.state.user },
-            }}
-          >
-            <button type="button" class="btn btn-outline-dark">
-              Edit profile
-            </button>
-          </Link>
+          <div>
+            <h1>Profile</h1>
+            {this.state.user.name && <p>Name: {this.state.user.name}</p>}
+            {this.state.user.city.name && <p>City: {this.state.user.city.name}</p>}
+            <p>Member since: {moment(this.state.user.createdAt).format("LL")}</p>
+            <Link
+              className="link"
+              to={{
+                pathname: "/profile/edit",
+                state: { ...this.state.user },
+              }}
+            >
+              <button type="button" class="btn btn-outline-dark">
+                Edit profile
+              </button>
+            </Link>
+          </div>
+          <h3>My Posts</h3>
+          <div className="allPosts">
+            {this.state.posts.map((post) => (
+              <Post {...post} key={post._id} /> 
+            ))}
+          </div>
         </div>
-        <h3>My Posts</h3>
-        <div className="allPosts">
-          {this.state.posts.map((post) => (
-            <Post {...post} key={post._id} />
-          ))}
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>Thanks for your patience while we load...</p>
+    }
   }
 }
 
