@@ -8,32 +8,33 @@ import ConfirmDelete from "./modals/ConfirmDelete";
 
 class PostDetails extends Component {
   state = {
-    data: [],
     body: [],
-    city: {},
-    author: {},
+    cityName: "",
+    cityId: "",
+    authorName: "",
+    authorId: "",
+    data: []
   };
 
   componentDidMount() {
-    axios
-      .get(`http://localhost:3001/api/v1/posts/${this.props.match.params.id}`)
+    PostModel.getOne(this.props.match.params.id)
       .then((res) => {
+        console.log(res);
         this.setState({
-          data: res.data,
           body: res.data.body,
-          city: res.data.city,
-          author: res.data.author,
-        });
-        console.log(res.data);
-        console.log(this.state);
-
-        // console.log(this.state.data.city['name']);
+          cityName: res.data.city.name,
+          cityId: res.data.city._id,
+          authorName: res.data.author.name,
+          authorId: res.data.author._id,
+          data: res.data
+        })
       })
-      .catch((error) => console.log("Error fetching and parsing data", error));
+      .catch((err) => console.log(err))
   }
+
   handleDelete = (event) => {
     event.preventDefault();
-    PostModel.remove(this.props.match.params.id)
+    PostModel.delete(this.props.match.params.id)
       .then((res) => {
         console.log(res);
         this.props.history.goBack();
@@ -52,15 +53,15 @@ class PostDetails extends Component {
   render() {
     const { context } = this.props;
     console.log(context.currentUser);
-    console.log(this.state.author._id);
+    //console.log(this.state.author._id);
     return (
       <div>
         <p>{this.state.data.title}</p>
-        <p>{this.state.city.name}</p>
+        {/* <p>{this.state.city.name}</p> */}
         <img src={this.state.data.image} alt={this.state.data.title} />
         <p>
           {console.log(this.state)}
-          Posted by {this.state.author.name} on{" "}
+          {/* Posted by {this.state.author.name} on{" "} */}
           {moment(this.state.data.createdAt).format("LL")}
         </p>
         {this.state.body.map((p, i) => (
