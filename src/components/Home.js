@@ -1,15 +1,84 @@
 import React from "react";
-import Image from "react-bootstrap/Image";
+//import axios from "axios";
+import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
 
-const Home = () => {
+export default function Home(props) {
   return (
     <div>
       <div className="image-blurred-edge m-5">
-        {/* <Image
-          src="../images/moving.gif"
-          className="d-block w-100 p-5"
-          alt="sunglasses gif"
-        /> */}
+        <Carousel>
+          <Carousel.Item>
+            <a href="/profile">
+              <img
+                className="d-block w-100"
+                src="/images/moving.gif"
+                alt="First slide"
+              />
+            </a>
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <a>
+              <img
+                className="d-block w-100"
+                src="/images/bangkok.jpeg"
+                alt="Second slide"
+              />
+              <Carousel.Caption>
+                <p>Bangkok, Thailand</p>
+              </Carousel.Caption>
+            </a>
+          </Carousel.Item>
+          <Carousel.Item>
+            <a>
+              <img
+                className="d-block w-100"
+                src="/images/london.jpeg"
+                alt="Third slide"
+              />
+            </a>
+            <Carousel.Caption>
+              <p>London, UK</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <a>
+              <img
+                className="d-block w-100"
+                src="/images/sf.jpeg"
+                alt="Fourth slide"
+              />
+            </a>
+            <Carousel.Caption>
+              <p>San Francisco, USA</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <a>
+              <img
+                className="d-block w-100"
+                src="/images/lasv.jpeg"
+                alt="Fifth slide"
+              />
+            </a>
+            <Carousel.Caption>
+              <p>Las Vegas, USA</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <a>
+              <img
+                className="d-block w-100"
+                src="/images/gib.jpeg"
+                alt="Sixth slide"
+              />
+            </a>
+            <Carousel.Caption>
+              <p>Gibraltar, UK</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
       </div>
       <h2 className="text-center">Wayfarer is...</h2>
       <div className="container px-5">
@@ -69,6 +138,4 @@ const Home = () => {
       </div>
     </div>
   );
-};
-
-export default Home;
+}

@@ -2,15 +2,11 @@
   background-color: bisque;
 }
 
-/* body {
-  background-image: url("/images/moving.gif")
-} */
 
-.image-blurred-edge {
-  background-image: url('/images/moving.gif');
+.d-block {
+  object-fit: fill;
   width: 500px;
-  height: 300px;
-  box-shadow: 0 0 8px 8px white inset;
+  height: 400px;
 }
 
 .link {
