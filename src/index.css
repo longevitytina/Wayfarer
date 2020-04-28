@@ -1,11 +1,23 @@
 .selectedLink {
   background-color: bisque;
 }
+
 .link {
   color: rgb(92, 89, 89);
 }
+
 .link:hover {
   color: rgb(8, 8, 8);
+}
+
+* {
+  font-family: 'Gruppo',
+    cursive;
+}
+
+.brand {
+  font-family: 'Bellota',
+    cursive;
 }
 
 .nav-link {
@@ -15,9 +27,11 @@
 .nav-link:hover {
   color: rgb(8, 8, 8);
 }
+
 .allPosts {
   max-width: 600px;
 }
+
 /*
  * Sidebar
  */

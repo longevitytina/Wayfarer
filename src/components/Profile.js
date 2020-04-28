@@ -35,14 +35,16 @@ class Profile extends Component {
   }
 
   render() {
-    if (this.state.posts && this.state.user) {
-      return (
-        <div>
-          <div>
-            <h1>Profile</h1>
+    return (
+      <div className="container px-5">
+        <div className="row">
+          <div className="col-sm p-3">
+            <h2>Profile</h2>
             {this.state.user.name && <p>Name: {this.state.user.name}</p>}
-            {this.state.user.city.name && <p>City: {this.state.user.city.name}</p>}
-            <p>Member since: {moment(this.state.user.createdAt).format("LL")}</p>
+            {this.state.user.city && <p>City: {this.state.user.city.name}</p>}
+            <p>
+              Member since: {moment(this.state.user.createdAt).format("LL")}
+            </p>
             <Link
               className="link"
               to={{
@@ -55,17 +57,21 @@ class Profile extends Component {
               </button>
             </Link>
           </div>
-          <h3>My Posts</h3>
-          <div className="allPosts">
-            {this.state.posts.map((post) => (
-              <Post {...post} key={post._id} /> 
-            ))}
+
+          <div className="col-sm p-3">
+            {" "}
+            <h2>My Posts</h2>
+            <div className="allPosts">
+              <ul className="list-unstyled">
+                {this.state.posts.map((post) => (
+                  <Post {...post} key={post._id} />
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      );
-    } else {
-      return <p>Thanks for your patience while we load...</p>
-    }
+      </div>
+    );
   }
 }
 
