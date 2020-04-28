@@ -64,8 +64,8 @@ class EditProfile extends Component {
   render() {
     const { context } = this.props;
     return (
-
       <Form>
+        <h3 className="my-5">Edit Profile</h3>
         <Form.Group as={Row} controlId="email" onSubmit={this.handleSubmit}>
           <Form.Label column sm="4">
             Email
@@ -80,7 +80,7 @@ class EditProfile extends Component {
           <Form.Control type="text" placeholder={this.state.name} onChange={this.handleChange} />
         </Form.Group>
 
-        <Form.Group controlId="city">
+        <Form.Group controlId="city" className="mb-5">
           <Form.Label>City</Form.Label>
           <Form.Control as="select" onChange={this.handleSelect}>
             <option></option>
@@ -91,6 +91,7 @@ class EditProfile extends Component {
         </Form.Group>
         <Button
             variant="outline-secondary"
+            className="mr-2"
             onClick={this.props.history.goBack}
           >
             Back
