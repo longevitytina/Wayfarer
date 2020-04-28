@@ -32,12 +32,10 @@ export default () => (
     <NavTopWithContext />
     <LoginWithContext />
     <SignupWithContext />
-    <Container>
-      <Row>
-        <Col sm={4}>
-          <SidebarWithContext />
-        </Col>
-        <Col>
+    <div className="wrapper">
+      <SidebarWithContext />
+      <div className="content p-5 d-flex justify-content-center">
+        
           <Switch>
             <Route exact path="/" component={Home} />
             <PrivateRoute exact path="/profile" component={ProfileWithContext} />
@@ -48,8 +46,8 @@ export default () => (
             <Route exact path="/city/:id" component={CityDetailWithContext} />
             <Route component={NotFound} />
           </Switch>
-        </Col>
-      </Row>
-    </Container>
+
+      </div>
+    </div>
   </Router>
 );
