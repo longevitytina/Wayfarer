@@ -4,6 +4,7 @@ import CityPosts from "./CityPosts";
 import CreatePost from "./modals/CreatePost";
 import CityModel from "../models/city";
 import PostModel from "../models/post";
+import DivStyle from '../DivStyle';
 
 //link to city that was clicked
 //display image, title, description, and all posts
@@ -49,7 +50,7 @@ export default class CityDetail extends Component {
     const { context } = this.props;
     if (this.state.city && this.state.posts) {
       return (
-        <div className="">
+        <div style={DivStyle} >
           <img src={this.state.city.image} alt={this.state.city.name} />
           <div className="d-flex justify-content-between">
             <h3 className="pt-4">{this.state.city.name} Posts</h3>

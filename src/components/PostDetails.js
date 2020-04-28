@@ -3,6 +3,7 @@ import PostModel from "../models/post";
 import { Link } from "react-router-dom";
 import ConfirmDelete from "./modals/ConfirmDelete";
 import Moment from "react-moment";
+import DivStyle from '../DivStyle';
 
 class PostDetails extends Component {
   state = {
@@ -40,7 +41,7 @@ class PostDetails extends Component {
     // console.log(context.currentUser);
     if (this.state.data && this.state.city && this.state.author) {
       return (
-        <div className="py-5">
+        <div style={DivStyle} >
           <img
             className="float-right ml-5 mb-3"
             src={this.state.data.image}

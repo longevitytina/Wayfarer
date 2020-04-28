@@ -20,9 +20,15 @@ class CreatePost extends Component {
 
   handleClose = () => {
     this.setState({ 
+      title: null,
+      body: null,
+      image: null,
       author: null,
       city: null,
-      show: false 
+      show: false,
+      error: null,
+      errT: null,
+      errB: null,
     });
   };
 
@@ -51,12 +57,13 @@ class CreatePost extends Component {
         window.location.reload(false);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.errors.title);
         this.setState({
           error: err.response.data,
           errB: (err.response.data.errors.body ? err.response.data.errors.body : null),
           errT: (err.response.data.errors.title ? err.response.data.errors.title : null),
         });
+        console.log(this.state.error, this.state.errB, this.state.errT);
       });
   };
 
@@ -64,7 +71,7 @@ class CreatePost extends Component {
 
     return (
       <>
-        <Button variant="outline-dark" onClick={this.handleShow}>
+        <Button  className="h25" variant="outline-dark" onClick={this.handleShow}>
           Add post
         </Button>
 
