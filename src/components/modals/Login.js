@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import UserModel from "../../models/user";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
 	state = { 
@@ -24,7 +25,7 @@ class Login extends Component {
       .then((res) => {
 				console.log(res.data.data);
         context.actions.setCurrentUser(res.data.data);
-        this.props.history.push("/profile");
+				this.props.history.push("/profile");
       })
       .catch((err) => {
 				if (err.status) {
@@ -35,6 +36,13 @@ class Login extends Component {
 			});
 		// console.log(this.props);
 	};
+
+	componentWillUnmount =() => {
+		this.setState({
+			email: "",
+			password: ""
+		});
+	}
 	
 	render() { 
 		const { context } = this.props;
@@ -90,4 +98,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default withRouter(Login);

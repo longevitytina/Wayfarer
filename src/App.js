@@ -30,6 +30,7 @@ const EditPostWithContext = withContext(EditPost);
 export default () => (
   <Router>
     <NavTopWithContext />
+
     <LoginWithContext />
     <SignupWithContext />
     <div className="wrapper">
