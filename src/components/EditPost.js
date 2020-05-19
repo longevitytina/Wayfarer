@@ -13,7 +13,6 @@ class EditPost extends Component {
     cities: [],
     author: {},
   };
-
   componentDidMount() {
     axios
       .get(
