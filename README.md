@@ -1,251 +1,123 @@
-# <img src="https://cloud.githubusercontent.com/assets/7833470/10899314/63829980-8188-11e5-8cdd-4ded5bcb6e36.png" height="60"> Project Wayfarer
+# Wayfarer
 
-## Brief
+[Wayfarer Website](https://sheltered-thicket-24218.herokuapp.com/)
 
-We have been commissioned to build a travel community, code-named **Project Wayfarer** for now, for users to share tips (AKA posts) about their favorite locations around the world.
+A travel community for users to share tips (AKA posts) about their favorite locations around the world. The team simulated a commisioned client contract to build, based on the client's wireframe and user stories. The client contract consists of three core sprints and four bonus sprints.
 
-## Client Contract
+## Index
 
-The client has provided basic wireframes and user stories. In some cases, these requirements may be vague or incomplete.
+- [Authors](#The-Team)
+- [Scope](#scope)
+- [User Stories](#user-stories)
+- [Wireframes](#wireframes)
+- [Data Models](#data-models)
+- [Future Updates](#future-updates)
 
-- [Wireframes](./wireframes.png)
-- [User Stories](./user-stories.md)
+## Getting Started
 
-## Process
+- Register or sign-in with prepopulated data - login: tt@gmail.com PW: 1234
+- Select a city from the sidebar,
+  - Browse through list of post teasers, or create a post for the city
+  - Click on a post to read more
+    - View an author's profile by clicking their name near the post title
+    - Edit/delete post if the post was created by current user
+- View personal profile by clicking the link in the navbar
+  - Edit profile information
+  - View index of posts made and click them to view more
 
-The client contract consists of three core sprints and four bonus sprints. Each sprint contains a set of user stories. You may not complete all of the sprints within the time period, and that's ok. **The goal is to gain experience working on a development project in a group while navigating a client's feature list.**
+## The-Team (of kick-ass women)
 
-**IMPORTANT:** You may not begin a new sprint or start on a bonus without client approval.
+- **Anya Pichugina** - [Github](https://github.com/anya-pich) - [Linkedin](https://www.linkedin.com/in/anna-pich/)
+- **Elizabeth Patton** - [Github](https://github.com/eapatton) - [Linkedin](https://www.linkedin.com/in/elizabeth-a-patton/)
+- **Tina Taylor** - [Github](https://github.com/longevitytina) - [Linkedin](https://www.linkedin.com/in/tina-taylor-codes/)
 
-You will work in groups of 3-4, and we expect you to **pair program** for the majority of the time you're writing code.
+## Scope
 
-During morning scrums and in smaller check-ins throughout the day, clearly communicate your current status and next steps to your teammates. Use a kanban-style scrum board such as **Trello** to organize tasks ([example Trello board](https://trello.com/b/JPdt327u/vagabond)).
+##### Technologies used: The MERN Javascript stack
 
-Commit changes at least once for each user story. Put effort into your **design**. Use a CSS framework (e.g. Bootstrap or Materialize), partials, and some custom CSS or Sass/Less.
+- [MongoDB](https://www.mongodb.com/) - Database
+- [Express](https://expressjs.com/) - Web framework
+- [React](https://reactjs.org/) - Frontend interactive UI
+- [Node](https://getbootstrap.com) - JavaScript runtime environment
+- [Bootstrap](https://getbootstrap.com) - Styling
 
-Work as **[git collaborators](./git-collaboration-workflow.md), build on feature branches, and submit pull requests for approval and merging**.
+## Wireframes
 
-After you have completed your project, **deploy to heroku** to get practice getting the app online. The earlier you resolve deployment, the easier it will be to fix bugs.
+##### Profile Page
 
-**Refactor** your code after each sprint, considering:
+![Wireframe3](/wasteland//main_app/img/ss3.png)
 
-- Indentation
-- Readability/clarity
-- Naming
-- Organization
-- Commenting
-- DRYness
+<img src="/main_app/static/Images/profile.png" width="200" height="200">
 
-## Questions to Ask Yourselves
+##### Playlist Page
 
-1. **Are you all clear about what the client wants?** Identify vague areas. Seek clarification in any cases where you feel less confident about your interpretation of the client's vision.
+<img src="/main_app/static/Images/playlist_view.png" width="200" height="200">
 
-2. **What will the UX/UI flow be?** Hammer out any areas of ambiguity in the wireframes
+##### Create Playlist Page
 
-3. **Which models do you need to implement?** Create an ERD for the client to reference.
+<img src="/main_app/static/Images/playlist_create.png" width="200" height="200">
 
-4. **What are the major milestones or components that you need to complete?** How can these be turned into tasks that group members can complete in pairs? Where do these milestones overlap and how will those related tasks be managed?
+##### Technique Index Page
 
-5. **What milestones are you and your group members interested in working on?** How can you effectively delegate the work into pairs so that each group member is interested, challenged, and productive?
+<img src="/main_app/static/Images/tech_index.png" width="200" height="200">
 
-<details>
-<summary>TEAMS</summary>
-<br>
+##### Technique Detail Page
 
-Seanny
-Sri
-Jimmy
-Laura
+<img src="/main_app/static/Images/technique_detail.png" width="200" height="200">
 
-# <img src="https://cloud.githubusercontent.com/assets/7833470/10899314/63829980-8188-11e5-8cdd-4ded5bcb6e36.png" height="60"> Project Wayfarer: User Stories
+## Data Models
 
-**Elevator Pitch:** A travel community for users to share city-specific tips ("posts" or "logs") about their favorite locations around the world.
+<img src="/main_app/static/Images/Datamodels.png" width="200" height="200">
 
----
+## Future Updates
 
-## Sprint 1: Basic Auth & Profiles
+##### Technologies
 
-**A user should be able to:**
+- Add Spotify playlist API
+- Relaunch with React frontend
+- Mobile app version - React Native
 
-1. Navigate to "/" and see a basic splash page with:
+##### Features
 
-- The name of the website.
-- Links to "Log In" and "Sign Up".
-
-2. Sign up for an account.
-3. Log in to their account if they already have one.
-4. Be redirected to their public profile page after logging in.
-5. On their public profile page, see their name, the current city they have set in their profile, and their join date.
-6. See the site-wide header on every page with:
-
-- A link to "Log Out" if they're logged in.
-- Links to "Log In" and "Sign Up" if they're logged out.
-
-7. Update their profile by making changes to their name and/or current city.
-8. See the titles of all the posts they've contributed (start with pre-seeded data).
-9. Click on the title of one of their posts and be redirected to a "show" page for that post.
-10. View post "show" pages with title, author, and content.
-
-### Bonuses
-
-**A user should be able to:**
-
-1. See a "default" profile photo on their profile page before adding their own photo.
-2. Update their profile photo (consider using Paperclip or Uploadcare).
-3. See their profile photo next to their posts.
-4. Receive a welcome email after creating an account.
-
-### Possible Resources
-
-- Firebase Auth: https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
-- Strapi Auth: https://blog.strapi.io/protected-routes-and-authentication-with-react-and-node-js/
-- JWT Auth: https://appdividend.com/2018/02/07/node-js-jwt-authentication-tutorial-scratch/
-
----
-
-## Sprint 2: CRUD
-
-**A user should be able to:**
-
-1. View the "San Francisco" page (at "/cities/1") including:
-
-- The site-wide header.
-- The name of the city.
-- An iconic photo of the city.
-
-2. View a list of posts on the San Francisco page:
-
-- Sorted by newest first.
-- With the post titles linked to the individual post "show" pages.
-
-3. Use an "Add New Post" button on the San Francisco city page to pull up the new post form.
-4. Create a new post for San Francisco<!--(**Hint:** <a href="http://guides.rubyonrails.org/routing.html#nested-resources" target="_blank">nested resources</a>)-->.
-5. Click "Edit" on ANY individual post, and be redirected to the edit form.
-6. Click "delete" on ANY individual post, then:
-
-- See a pop-up that says: "Are you sure you want to delete #{title}?"
-- If the user confirms, delete the post.
-
-### Bonuses
-
-**A user should be able to:**
-
-1. Visit city pages via pretty urls, like "/cities/san-francisco".
-2. Visit user profile pages via pretty urls, like "/users/james".
-3. On a city's page:
-
-- See post content truncated to 1000 characters max, with a link to view more.
-- See a relative published date, e.g. "2 days ago".
-
----
-
-## Sprint 3: Validations & Authorization
-
-**A user should be able to:**
-
-1. View city pages for "London" and "Gibraltar".
-2. Verify that a new post they create is successfully published on the correct city page.
-
-A user CANNOT save invalid data to the database, according to the following rules:
-
-3. A user CANNOT sign up with an email (or username) that is already in use.
-4. A post's title must be between 1 and 200 characters.
-5. A post's content must not be empty.
-
-A user is authorized to perform certain actions on the site, according to the following rules:
-
-6. A user MUST be logged in to create/update/destroy resources.
-7. A user may only edit their own profile and edit/delete their own posts.
-
-#### Bonuses
-
-**A user should be able to:**
-
-1. View an error message when form validations fail, for the following validations:
-
-- Title must be between 1 and 200 characters.
-- Content must not be empty.
-
-2. View only the 10 most recent posts on a city page (pagination), with
-
-- A link/button to the "Next" 10.
-- A link/button to the "Previous" 10.
-
-3. See a list of the city pages they've contributed to, on their public profile
-4. See the number of posts they've written for each city, next to the city's name in their profile.
-5. View all vagabond cities as markers/pins on a map on the site's homepage.
-6. Click on a pin on the homepage map and be redirected to the corresponding city page.
-
----
-
-## Sprint 4: Commenting
-
-### Bonuses
-
-**A user should be able to:**
-
-1. Comment on individual posts.
-2. See the number of comments a post has on the post's "show" page.
-3. See the number of comments they've left, on their public profile.
-4. Only add a comment when logged in.
-5. Only edit/delete their own comments.
-   Liz
-   Tina
-   Anna
-
-Sammy
-Ajay
-Aibek
-
-Seema
-Mert
-Huang
-
-Melody
-Monica
-Jake
-
- </details>
-
-## Presentation
-
-Each group will present their project on **04/28/2020 Tuesday** starting at **11:00am** for 15 minutes.
-
-Each member of your group should speak for equal parts during your presentation and mention which parts of the project they worked on.
-
-**Your presentation should include:**
-
-- Tour (demo) of your app, ideally deployed on heroku (but not required).
-- How did your group approach the requirements? (mention anything unique or creative your group chose to do)
-- What was easier than you thought? What was more challenging?
-- What is a lesson you will carry forward to working on your next project?
-- Shout outs for fellow students!
-
-## Evaluation
-
-You will be evaluated on the following measures:
-
-1. Project workflow
-
-- frequent commits with good commit messages
-- cooperative group work including majority of pair programing
-- effective use of branches
-- planning to avoid excessive merge conflicts
-- deliberate approach - routeside-in, logical progress from skateboard to car
-- the code is your original code
-
-2. Readability
-
-- to what degree does your app fulfill the user stories?
-- code is clean
-- follows good naming conventions
-- code is free of obvious errors and bugs
-- code demonstrates good problem solving
-- code is DRY
-
-3. Technical requirements
-
-- users are authenticated
-- full CRUD for posts
-- custom HTML, CSS, and JavaScript
-- users are authorized
+- Edit profile
+- Instructions
+- Various styling changes
+  - Techniques in global database will display message that you've added them.
+  - More transitions and icons
+- Timer settings: User will be able to customize time intervals with alerts
+- Submit techniques to the community
+  - Users can upload photos and videos
+    - Self made content
+      - Connect IG, tiktok, etc..
+- View other user's playlist and add them to your own profile
+- Follow other users
+- Find massage therapist/trainers in your area
+  - connect an external search api like yelp, nextdoor
+  - Provide a site index of therapist in the website community
+    - Provide profile pages for professionals
+- Forums
+  - Post skill-trade inquiries
+  - Post discussions about pain, stories, guidance
+- Injury tracker
+  - Collect data that shows if methodologies/techniques are working
+    - Display graphs to visually represent data
+    - Share data with community, tags techniques used
+
+## References
+
+- [Django admin panel customization](https://data-flair.training/blogs/django-admin-customization/)
+- [Datamodel builder](https://www.lucidchart.com/)
+- [Create super user in script](https://stackoverflow.com/questions/6244382/how-to-automate-createsuperuser-on-django)
+- [Split models.py into several files](https://stackoverflow.com/questions/6336664/split-models-py-into-several-files)
+- [Extra fields on many-to-many relationships](https://docs.djangoproject.com/en/dev/topics/db/models/#extra-fields-on-many-to-many-relationships)
+- [Random pic generator](https://source.unsplash.com/)
+- [ManyToMany convert queryset iteration ](https://stackoverflow.com/questions/45768190/typeerror-manyrelatedmanager-object-is-not-iterable)
+- [is_authenticated](https://docs.djangoproject.com/en/2.0/topics/auth/default/#limiting-access-to-logged-in-users)
+
+- [Bootstrap profile page starter](https://bootstrapious.com/p/bootstrap-profile-page)
+- [Sortable list library](https://github.com/SortableJS/Sortable)
+- [Collectstatic error](https://stackoverflow.com/questions/36665889/collectstatic-error-while-deploying-django-app-to-heroku)
+- [Display Timer](https://www.freecodecamp.org/forum/t/return-in-setinterval/186389/8)
+
+- [Align buttons](https://stackoverflow.com/questions/20962483/how-do-i-make-two-bootstrap-buttons-side-by-side/20962556)
+- [Modeling playlists](https://stackoverflow.com/questions/4799378/best-way-to-make-a-simple-orderable-playlist-in-django)
