@@ -16,7 +16,7 @@ class EditPost extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:3001/api/v1/posts/${this.props.match.params.id}`)
+      .get(`${process.env.REACT_APP_API_URL}/posts/${this.props.match.params.id}`)
       .then((res) => {
         this.setState({
           data: res.data,
@@ -31,7 +31,7 @@ class EditPost extends Component {
       .catch((error) => console.log("Error fetching and parsing data", error));
 
     axios
-      .get("http://localhost:3001/api/v1/cities")
+      .get(`${process.env.REACT_APP_API_URL}/cities`)
       .then((res) => {
         this.setState({ cities: res.data });
       })
