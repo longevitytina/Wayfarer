@@ -16,7 +16,9 @@ class EditPost extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/posts/${this.props.match.params.id}`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/posts/${this.props.match.params.id}`
+      )
       .then((res) => {
         this.setState({
           data: res.data,
@@ -65,7 +67,7 @@ class EditPost extends Component {
     if (form.checkValidity() === true) {
       PostModel.put(this.state)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.props.history.goBack();
         })
         .catch((err) => console.log(err));

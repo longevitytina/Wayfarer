@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import {Media} from "react-bootstrap";
+import { Media } from "react-bootstrap";
 
 const Post = (props) => {
   if (props.city) {
@@ -17,23 +17,23 @@ const Post = (props) => {
         <Media.Body>
           <h5 className="mb-n2">{props.title}</h5>
           <sub>
-            {props.city.name}, {props.city.country} | <Moment local format="LL">{props.createdAt}</Moment>
+            {props.city.name}, {props.city.country} |{" "}
+            <Moment local format="LL">
+              {props.createdAt}
+            </Moment>
           </sub>
-          <p className="text-truncate w-25" >{props.body[0]}</p>
+          <p className="text-truncate w-25">{props.body[0]}</p>
           <Link
             className="stretched-link"
             to={{
               pathname: `/post/${props._id}`,
             }}
-          >
-          </Link>
+          ></Link>
         </Media.Body>
       </Media>
-  
-  
     );
   } else {
-    return <p>Pending</p>
+    return <p>Pending</p>;
   }
 };
 

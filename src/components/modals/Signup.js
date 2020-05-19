@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import UserModel from '../../models/user';
+import UserModel from "../../models/user";
 import { withRouter } from "react-router-dom";
 
 class Signup extends Component {
@@ -19,25 +19,24 @@ class Signup extends Component {
   };
 
   handleSubmit = (event) => {
-		const { context } = this.props;
+    const { context } = this.props;
     event.preventDefault();
     UserModel.post(this.state)
       .then((res) => {
         // console.log(res.data.data);
         context.actions.setCurrentUser(res.data);
-				this.props.history.push("/profile");
-
+        this.props.history.push("/profile");
       })
       .catch((err) => {
-				console.log(err);
-				this.setState({
-					error: err.response.data.message,
-				});
+        console.log(err);
+        this.setState({
+          error: err.response.data.message,
+        });
       });
   };
 
   render() {
-		const { context } = this.props;
+    const { context } = this.props;
     return (
       <Modal
         show={context.showSignupModal}

@@ -15,11 +15,8 @@ class CreatePost extends Component {
     errB: null,
   };
 
-  // componentDidMount = () => {
-  // };
-
   handleClose = () => {
-    this.setState({ 
+    this.setState({
       title: null,
       body: null,
       image: null,
@@ -34,18 +31,19 @@ class CreatePost extends Component {
 
   handleShow = () => {
     this.setState({
-      show: true 
+      show: true,
     });
-    console.log(this.state);;
+    // console.log(this.state);
   };
 
   handleChange = (event) => {
-    let value = (event.target.id === "body") ?
-      event.target.value.split("\n") :
-      event.target.value;
+    let value =
+      event.target.id === "body"
+        ? event.target.value.split("\n")
+        : event.target.value;
     this.setState({
       [event.target.id]: value,
-    });     
+    });
   };
 
   handleSubmit = (event) => {
@@ -60,18 +58,25 @@ class CreatePost extends Component {
         // console.log(err.errors.title);
         this.setState({
           error: err.response.data,
-          errB: (err.response.data.errors.body ? err.response.data.errors.body : null),
-          errT: (err.response.data.errors.title ? err.response.data.errors.title : null),
+          errB: err.response.data.errors.body
+            ? err.response.data.errors.body
+            : null,
+          errT: err.response.data.errors.title
+            ? err.response.data.errors.title
+            : null,
         });
-        console.log(this.state.error, this.state.errB, this.state.errT);
+        // console.log(this.state.error, this.state.errB, this.state.errT);
       });
   };
 
   render() {
-
     return (
       <>
-        <Button  className="h25" variant="outline-dark" onClick={this.handleShow}>
+        <Button
+          className="h25"
+          variant="outline-dark"
+          onClick={this.handleShow}
+        >
           Add post
         </Button>
 

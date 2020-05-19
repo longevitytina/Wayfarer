@@ -1,29 +1,28 @@
 import React, { Component } from "react";
 import UserModel from "../models/user";
-import axios from "axios";
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 class EditProfile extends Component {
   state = {
     name: "",
     city: "",
     user: "",
-    email: ""
+    email: "",
   };
 
   componentDidMount() {
     const { context } = this.props;
     UserModel.getOne(context.currentUser)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           name: res.data.name,
           user: res.data._id,
-          email: res.data.email
-        })
-        console.log(context.cities);
+          email: res.data.email,
+        });
+        // console.log(context.cities);
       })
-        .catch((error) => console.log("Error fetching and parsing data", error));
+      .catch((error) => console.log("Error fetching and parsing data", error));
   }
 
   handleChange = (event) => {
@@ -38,8 +37,8 @@ class EditProfile extends Component {
       const found = context.cities.find(
         (city) => city.name === event.target.value
       );
-      console.log(event.target.value);
-      console.log(found._id);
+      // console.log(event.target.value);
+      // console.log(found._id);
       this.setState({ city: found._id });
     } else {
       this.setState({ city: "" });
@@ -50,12 +49,7 @@ class EditProfile extends Component {
     event.preventDefault();
     UserModel.put(this.state)
       .then((res) => {
-        // this.setState({
-        //   name: "",
-        //   // city: '',
-        //   user: "",
-        // });
-        console.log(res);
+        // console.log(res);
         this.props.history.push("/profile");
       })
       .catch((err) => console.log(err));
@@ -77,7 +71,11 @@ class EditProfile extends Component {
 
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder={this.state.name} onChange={this.handleChange} />
+          <Form.Control
+            type="text"
+            placeholder={this.state.name}
+            onChange={this.handleChange}
+          />
         </Form.Group>
 
         <Form.Group controlId="city" className="mb-5">
@@ -90,15 +88,15 @@ class EditProfile extends Component {
           </Form.Control>
         </Form.Group>
         <Button
-            variant="outline-secondary"
-            className="mr-2"
-            onClick={this.props.history.goBack}
-          >
-            Back
-          </Button>
-          <Button variant="outline-dark" onClick={this.handleSubmit}>
-            Submit
-          </Button>
+          variant="outline-secondary"
+          className="mr-2"
+          onClick={this.props.history.goBack}
+        >
+          Back
+        </Button>
+        <Button variant="outline-dark" onClick={this.handleSubmit}>
+          Submit
+        </Button>
       </Form>
     );
   }

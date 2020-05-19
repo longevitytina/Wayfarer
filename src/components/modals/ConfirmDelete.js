@@ -18,15 +18,13 @@ function DeleteModal(props) {
           <Modal.Title>Confirm delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-					Are you sure you want to delete post {props.post}?
-
-				</Modal.Body>
+          Are you sure you want to delete post {props.post}?
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={props.delete}>
             Delete
           </Button>
-					<Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
@@ -34,7 +32,5 @@ function DeleteModal(props) {
     </>
   );
 }
-
-// render(<DeleteModal />);
 
 export default DeleteModal;

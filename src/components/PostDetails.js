@@ -3,7 +3,7 @@ import PostModel from "../models/post";
 import { Link } from "react-router-dom";
 import ConfirmDelete from "./modals/ConfirmDelete";
 import Moment from "react-moment";
-import DivStyle from '../DivStyle';
+import DivStyle from "../DivStyle";
 
 class PostDetails extends Component {
   state = {
@@ -15,13 +15,13 @@ class PostDetails extends Component {
   componentDidMount() {
     PostModel.getOne(this.props.match.params.id)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.setState({
           data: res.data,
           author: res.data.author,
           city: res.data.city,
         });
-        console.log(this.state);
+        // console.log(this.state);
       })
       .catch((err) => console.log(err));
   }
@@ -30,7 +30,7 @@ class PostDetails extends Component {
     event.preventDefault();
     PostModel.delete(this.props.match.params.id)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.props.history.goBack();
       })
       .catch((err) => console.log(err));
@@ -41,27 +41,28 @@ class PostDetails extends Component {
     // console.log(context.currentUser);
     if (this.state.data && this.state.city && this.state.author) {
       return (
-        <div style={DivStyle} >
+        <div style={DivStyle}>
           <img
             className="float-right ml-5 mb-3"
             src={this.state.data.image}
             alt={this.state.data.title}
           />
           <h2>{this.state.data.title}</h2>
-          <h5>{this.state.city.name}, {this.state.city.country}</h5>
+          <h5>
+            {this.state.city.name}, {this.state.city.country}
+          </h5>
           <div className="my-3">
             <sub>
-              Posted by <Link
+              Posted by{" "}
+              <Link
                 className="link"
                 to={{
                   pathname: `/profile/${this.state.author._id}`,
                 }}
               >
-              {this.state.author.name ?
-                this.state.author.name
-                : "anon"
-              }
-              </Link> on &nbsp;
+                {this.state.author.name ? this.state.author.name : "anon"}
+              </Link>{" "}
+              on &nbsp;
               <Moment local format="LL">
                 {this.state.data.createdAt}
               </Moment>
@@ -75,7 +76,7 @@ class PostDetails extends Component {
             ))}
           </div>
 
-          {context.currentUser == this.state.data.author._id ? (
+          {context.currentUser === this.state.data.author._id ? (
             <div className="mt-5">
               <ConfirmDelete
                 post={this.state.data.title}

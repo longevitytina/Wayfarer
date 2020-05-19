@@ -1,24 +1,27 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { Consumer } from './Context';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { Consumer } from "./Context";
 
 export default ({ component: Component, ...rest }) => {
   return (
     <Consumer>
-      {context => (
+      {(context) => (
         <Route
           {...rest}
-          render={props => context.currentUser ? (
+          render={(props) =>
+            context.currentUser ? (
               <Component {...props} />
             ) : (
-              <Redirect to={{
-                pathname: '/',
-                state: { from: props.location }
-              }} />
+              <Redirect
+                to={{
+                  pathname: "/",
+                  state: { from: props.location },
+                }}
+              />
             )
           }
         />
-    )}
+      )}
     </Consumer>
   );
 };

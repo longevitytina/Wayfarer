@@ -1,7 +1,5 @@
 import React from "react";
-//import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
-import { Link } from "react-router-dom";
 
 export default function Home(props) {
   return (
@@ -80,7 +78,7 @@ export default function Home(props) {
           </Carousel.Item>
         </Carousel>
       </div>
-      <h2 className="text-center">Wayfarer is...</h2> 
+      <h2 className="text-center">Wayfarer is...</h2>
       <div className="container px-5">
         <div className="row">
           <div className="col-sm p-3">

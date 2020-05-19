@@ -4,7 +4,7 @@ import CityPosts from "./CityPosts";
 import CreatePost from "./modals/CreatePost";
 import CityModel from "../models/city";
 import PostModel from "../models/post";
-import DivStyle from '../DivStyle';
+import DivStyle from "../DivStyle";
 
 //link to city that was clicked
 //display image, title, description, and all posts
@@ -12,19 +12,19 @@ import DivStyle from '../DivStyle';
 export default class CityDetail extends Component {
   state = {
     city: null,
-    posts: null
+    posts: null,
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log(prevProps.location.pathname);
+    // console.log(prevProps.location.pathname);
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.getData();
     }
-  }
+  };
 
   componentDidMount = () => {
     this.getData();
-  }
+  };
 
   getData = () => {
     axios
@@ -38,19 +38,19 @@ export default class CityDetail extends Component {
           // console.log(resPosts.data);
           this.setState({
             city: resCity.data,
-            posts: resPosts.data
+            posts: resPosts.data,
           });
-          console.log(this.state);
+          // console.log(this.state);
         })
       )
       .catch((err) => console.log(err));
-  }
+  };
 
   render = () => {
     const { context } = this.props;
     if (this.state.city && this.state.posts) {
       return (
-        <div style={DivStyle} >
+        <div style={DivStyle}>
           <img src={this.state.city.image} alt={this.state.city.name} />
           <div className="d-flex justify-content-between">
             <h3 className="pt-4">{this.state.city.name} Posts</h3>
@@ -64,19 +64,14 @@ export default class CityDetail extends Component {
           <div className="allPosts">
             <ul className="list-unstyled">
               {this.state.posts.map((post) => (
-                <CityPosts
-                  {...post}
-                  key={post._id}
-                />
+                <CityPosts {...post} key={post._id} />
               ))}
             </ul>
           </div>
         </div>
-      )
+      );
     } else {
-      return (
-        <p>loading ...</p>
-      )
+      return <p>loading ...</p>;
     }
-  }
+  };
 }

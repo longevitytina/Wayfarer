@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
 
 import NavTop from "./components/NavTop";
 import Sidebar from "./components/Sidebar";
@@ -36,18 +35,20 @@ export default () => (
     <div className="wrapper">
       <SidebarWithContext />
       <div className="content p-5 d-flex justify-content-center">
-        
         <Switch>
           <Route exact path="/" component={Home} />
           <PrivateRoute exact path="/profile" component={ProfileWithContext} />
-          <PrivateRoute exact path="/profile/edit" component={EditProfileWithContext} />
+          <PrivateRoute
+            exact
+            path="/profile/edit"
+            component={EditProfileWithContext}
+          />
           <Route exact path="/profile/:id" component={ProfileWithContext} />
           <Route exact path="/post/:id" component={PostDetailsWithContext} />
           <Route exact path="/post/:id/edit" component={EditPostWithContext} />
           <Route exact path="/city/:id" component={CityDetailWithContext} />
           <Route component={NotFound} />
         </Switch>
-
       </div>
     </div>
   </Router>
