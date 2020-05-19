@@ -19,7 +19,7 @@ export default function Home(props) {
           </Carousel.Item>
 
           <Carousel.Item>
-            <a>
+            <a href="/city/5ea78433fb3a91a6cc789efe">
               <img
                 className="d-block w-100"
                 src="/images/bangkok.jpeg"
@@ -31,7 +31,7 @@ export default function Home(props) {
             </a>
           </Carousel.Item>
           <Carousel.Item>
-            <a>
+            <a href="/city/5ea78433fb3a91a6cc789f01">
               <img
                 className="d-block w-100"
                 src="/images/london.jpeg"
@@ -43,7 +43,7 @@ export default function Home(props) {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <a>
+            <a href="/city/5ea78433fb3a91a6cc789eff">
               <img
                 className="d-block w-100"
                 src="/images/sf.jpeg"
@@ -55,7 +55,7 @@ export default function Home(props) {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <a>
+            <a href="/city/5ea78433fb3a91a6cc789f00">
               <img
                 className="d-block w-100"
                 src="/images/lasv.jpeg"
@@ -67,7 +67,7 @@ export default function Home(props) {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <a>
+            <a href="/city/5ea78433fb3a91a6cc789f02">
               <img
                 className="d-block w-100"
                 src="/images/gib.jpeg"
@@ -80,7 +80,7 @@ export default function Home(props) {
           </Carousel.Item>
         </Carousel>
       </div>
-      <h2 className="text-center">Wayfarer is...</h2>
+      <h2 className="text-center">Wayfarer is...</h2> 
       <div className="container px-5">
         <div className="row">
           <div className="col-sm p-3">
