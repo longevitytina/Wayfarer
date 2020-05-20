@@ -6,7 +6,7 @@ import { Media } from "react-bootstrap";
 const Post = (props) => {
   if (props.city) {
     return (
-      <Media as="li">
+      <Media as="li" className="position-relative">
         <img
           width={64}
           height={64}
@@ -22,13 +22,14 @@ const Post = (props) => {
               {props.createdAt}
             </Moment>
           </sub>
-          <p className="text-truncate w-25">{props.body[0]}</p>
           <Link
-            className="stretched-link"
+            className="link"
             to={{
               pathname: `/post/${props._id}`,
             }}
-          ></Link>
+          >
+            <p className="text-truncate w-25 stretched-link">{props.body[0]}</p>
+          </Link>
         </Media.Body>
       </Media>
     );

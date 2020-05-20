@@ -90,11 +90,7 @@ class CreatePost extends Component {
             <Modal.Title>Add new post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form
-              noValidate
-              controlId="createPost"
-              onSubmit={this.handleSubmit}
-            >
+            <Form noValidate onSubmit={this.handleSubmit}>
               <Form.Group controlId="title">
                 <Form.Label>Post title:</Form.Label>
                 <Form.Control

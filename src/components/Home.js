@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
-export default function Home(props) {
+const Home = (props) => {
+  const [cities, setCities] = useState([]);
+  console.log(cities);
+
+  useEffect(() => {
+    setCities(props.context.cities);
+  }, [props.context.cities]);
+
+  const getCityUrl = (cityName) => {
+    const cityObj = cities.find((city) => city.name === cityName);
+    return cities.length > 1 ? "/city/" + cityObj._id : "/";
+  };
+
   return (
     <div>
       <div className="image-blurred-edge m-5">
@@ -17,7 +29,7 @@ export default function Home(props) {
           </Carousel.Item>
 
           <Carousel.Item>
-            <a href="/city/5ea78433fb3a91a6cc789efe">
+            <a href={getCityUrl("Bangkok")}>
               <img
                 className="d-block w-100"
                 src="/images/bangkok.jpeg"
@@ -29,7 +41,7 @@ export default function Home(props) {
             </a>
           </Carousel.Item>
           <Carousel.Item>
-            <a href="/city/5ea78433fb3a91a6cc789f01">
+            <a href={getCityUrl("London")}>
               <img
                 className="d-block w-100"
                 src="/images/london.jpeg"
@@ -41,7 +53,7 @@ export default function Home(props) {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <a href="/city/5ea78433fb3a91a6cc789eff">
+            <a href={getCityUrl("San Francisco")}>
               <img
                 className="d-block w-100"
                 src="/images/sf.jpeg"
@@ -53,7 +65,7 @@ export default function Home(props) {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <a href="/city/5ea78433fb3a91a6cc789f00">
+            <a href={getCityUrl("Las Vegas")}>
               <img
                 className="d-block w-100"
                 src="/images/lasv.jpeg"
@@ -65,7 +77,7 @@ export default function Home(props) {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <a href="/city/5ea78433fb3a91a6cc789f02">
+            <a href={getCityUrl("Gibraltar")}>
               <img
                 className="d-block w-100"
                 src="/images/gib.jpeg"
@@ -82,58 +94,33 @@ export default function Home(props) {
       <div className="container px-5">
         <div className="row">
           <div className="col-sm p-3">
-            <h3>Topic</h3>
+            <h3>Cities</h3>
             <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum" (The Extremes of Good and Evil) by Cicero, written in 45
-              BC. This book is a treatise on the theory of ethics, very popular
-              during the Renaissance. The first line of Lorem Ipsum, "Lorem
-              ipsum dolor sit amet..", comes from a line in section 1.10.32.
+              Learn more about the cities you plan to visit. Discover new cities
+              for your travel bucket list. Or just be an armchair traveller. All
+              are welcome!
             </p>
           </div>
           <div className="col-sm p-3">
-            <h3>Topic</h3>
+            <h3>Stories</h3>
             <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum" (The Extremes of Good and Evil) by Cicero, written in 45
-              BC. This book is a treatise on the theory of ethics, very popular
-              during the Renaissance. The first line of Lorem Ipsum, "Lorem
-              ipsum dolor sit amet..", comes from a line in section 1.10.32.
+              Have stories to share from your travels? You've come to the right
+              place. Tell your tales to fellow travellers. Read other people's
+              stories.
             </p>
           </div>
           <div className="col-sm p-3">
-            <h3>Topic</h3>
+            <h3>People</h3>
             <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum" (The Extremes of Good and Evil) by Cicero, written in 45
-              BC. This book is a treatise on the theory of ethics, very popular
-              during the Renaissance. The first line of Lorem Ipsum, "Lorem
-              ipsum dolor sit amet..", comes from a line in section 1.10.32.
+              Connect with the authors of your favorites stories. Read something
+              you like? Come across an author whose style you liked? See what
+              else they've posted.
             </p>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;

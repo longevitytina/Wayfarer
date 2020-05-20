@@ -1,43 +1,31 @@
 import React, { Component } from "react";
 import PostModel from "../models/post";
 import moment from "moment";
-import axios from "axios";
 import { Form } from "react-bootstrap";
 
 class EditPost extends Component {
   state = {
-    data: [],
     body: [],
     title: "",
     city: "",
-    cities: [],
-    author: {},
+    image: "",
+    edited: "",
   };
 
   componentDidMount() {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/posts/${this.props.match.params.id}`
-      )
+    PostModel.getOne(this.props.match.params.id)
       .then((res) => {
         this.setState({
-          data: res.data,
           body: res.data.body,
           title: res.data.title,
           city: res.data.city,
-
-          // cities: res.data,
-          author: res.data.author,
+          image: res.data.image ? res.data.image : "",
+          edited: res.data.updatedAt,
         });
       })
-      .catch((error) => console.log("Error fetching and parsing data", error));
-
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/cities`)
-      .then((res) => {
-        this.setState({ cities: res.data });
-      })
-      .catch((error) => console.log("Error fetching and parsing data", error));
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleChange = (event) => {
@@ -50,11 +38,9 @@ class EditPost extends Component {
 
   handleSelect = (event) => {
     if (event.target.value) {
-      const found = this.state.cities.find(
+      const found = this.props.context.cities.find(
         (city) => city.name === event.target.value
       );
-
-      // console.log(found._id);
       this.setState({ city: found._id });
     } else {
       this.setState({ city: "" });
@@ -65,9 +51,9 @@ class EditPost extends Component {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity() === true) {
-      PostModel.put(this.state)
+      let data = { ...this.state, _id: this.props.match.params.id };
+      PostModel.put(data)
         .then((res) => {
-          // console.log(res);
           this.props.history.goBack();
         })
         .catch((err) => console.log(err));
@@ -90,7 +76,7 @@ class EditPost extends Component {
                   className="form-control form-control-lg"
                   type="text"
                   name="title"
-                  maxlength="200"
+                  maxLength="200"
                   value={this.state.title}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -104,11 +90,21 @@ class EditPost extends Component {
                   onChange={this.handleSelect}
                   className="form-control"
                   as="select"
+                  value={this.state.city ? this.state.city.name : ""}
                 >
-                  {this.state.cities.map((city) => (
+                  {this.props.context.cities.map((city) => (
                     <option key={city._id}>{city.name}</option>
                   ))}
                 </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="image">
+                <Form.Label>Image link:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="image"
+                  value={this.state.image}
+                  onChange={this.handleChange}
+                />
               </Form.Group>
               <Form.Group controlId="body">
                 <Form.Label>Body</Form.Label>
@@ -125,7 +121,7 @@ class EditPost extends Component {
                   Please write something!
                 </Form.Control.Feedback>
               </Form.Group>
-              <p>Edited on {moment(this.state.data.updatedAt).format("LL")}</p>
+              <p>Edited on {moment(this.state.edited).format("LL")}</p>
 
               <button className="btn btn-outline-dark" type="submit">
                 Save

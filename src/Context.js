@@ -56,7 +56,7 @@ export class Provider extends Component {
         this.setState({ currentUser: null });
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
         localStorage.removeItem("uid");
         this.setState({ currentUser: null });
       });

@@ -27,7 +27,7 @@ export default class PostModel {
 
   static put(data) {
     let request = axios.put(
-      `${process.env.REACT_APP_API_URL}/posts/${data.data._id}`,
+      `${process.env.REACT_APP_API_URL}/posts/${data._id}`,
       data
     );
     return request;
