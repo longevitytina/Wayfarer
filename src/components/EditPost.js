@@ -11,7 +11,6 @@ class EditPost extends Component {
     image: "",
     edited: "",
   };
-
   componentDidMount() {
     PostModel.getOne(this.props.match.params.id)
       .then((res) => {
